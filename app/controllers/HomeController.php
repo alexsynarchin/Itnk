@@ -17,9 +17,8 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		$organizations = Organization::get();
-		//die(print_r($organizations));
-		return View::make('index')->with('organizations', $organizations);
+				//die(print_r($organizations));
+		return View::make('home');
 	}
 
 }

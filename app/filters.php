@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/auth/login');
 		}
 	}
 });
@@ -67,9 +67,8 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::to('home');
 });
-
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
