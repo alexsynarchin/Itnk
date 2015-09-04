@@ -15,10 +15,9 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function index()
+	public function showWelcome()
 	{
-				//die(print_r($organizations));
-		return View::make('home');
+		return View::make('hello');
 	}
 
 }

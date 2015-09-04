@@ -8,13 +8,13 @@
         <div class="col-md-6">
 
         </div>
-        @if (Auth::guest())
-            <div class="auth_btns  col-md-3">
-                <a class="btn btn-default" href="/auth/login">Войти в систему</a>
+        @if (Auth::check())
+            <div class="auth_btns col-md-3">
+                <a class="btn btn-default" href="/logout">Выйти из системы</a>
             </div>
         @else
-            <div class="auth_btns col-md-3">
-                <a class="btn btn-default" href="/auth/logout">Выйти из системы</a>
+            <div class="auth_btns  col-md-3">
+                <a class="btn btn-default" href="login">Войти в систему</a>
             </div>
         @endif
     </div>

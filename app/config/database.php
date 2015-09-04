@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'itnk',
+			'database'  => 'forge',
 			'username'  => 'forge',
-			'password'  => 'BS0YnMcLu98T45WTYMAW',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -1,4 +1,5 @@
-@extends('layouts.main')
+@extends('layouts.app')
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -6,19 +7,8 @@
                 <div class=" auth-panel panel panel-default">
                     <div class="panel-heading center">Форма авторизации</div>
                     <div class="panel-body">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <strong>Ошибки ввода</strong> <br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <form class="auth-form form-horizontal" role="form" method="POST" action="login">
 
-
-                            {{ Form::open(array('route' => 'user-login','class'=>'auth-form form-horizontal', 'role' => 'form')) }}
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Логин</label>
                                 <div class="col-md-7">
@@ -39,7 +29,7 @@
                                     </button>
                                 </div>
                             </div>
-                            {{ Form::close() }}
+                        </form>
                     </div>
                 </div>
             </div>
