@@ -68,7 +68,7 @@ return array(
 			'host'     => 'localhost',
 			'database' => 'itnk',
 			'username' => 'forge',
-			'password' => 'IXB2ZnU57Zkj42h8pmAe',
+			'password' => 'BS0YnMcLu98T45WTYMAW',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
