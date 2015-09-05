@@ -208,7 +208,7 @@
                             <a href="#" class="btn btn-default btn-flat">Профиль</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Выйти из системы</a>
+                            <a href="/logout" class="btn btn-default btn-flat">Выйти из системы</a>
                         </div>
                     </li>
                 </ul>

@@ -65,7 +65,7 @@
             Телефоны: +7 (347) 266-15-33, +7913426471
         </div>
         <!-- Default to the left -->
-        <strong>Разработка компании ИТНК &copy; 2015 </strong> 
+        <strong>Разработка компании ИТНК &copy; 2015 </strong>
     </footer>
 
     <!-- Control Sidebar -->
