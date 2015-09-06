@@ -19,7 +19,7 @@ class UsersController extends \BaseController {
 		$data = Input::only(['username', 'password']);
 
 		if(Auth::attempt(['username' => $data['username'], 'password' => $data['password']])){
-			return Redirect::to('/profile');
+			return Redirect::to('/home');
 		}
 
 		return Redirect::route('login')->withInput();
