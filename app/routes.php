@@ -18,6 +18,15 @@ Route::get('/', function()
 Route::get('/home', function(){
 	return View::make('home');
 })->before('auth');
+Route::get('/organization', function(){
+	return View::make('organization.organization');
+})->before('auth');
+Route::get('/documents', function(){
+	return View::make('documents.documents');
+})->before('auth');
+Route::get('/oss', function(){
+	return View::make('os.oss');
+})->before('auth');
 Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'))->before('guest');
 Route::post('/login', array('as' => 'login', 'uses' => 'UsersController@handleLogin'));
 Route::get('/profile', array('as' => 'profile', 'uses' => 'UsersController@profile'))->before('auth');

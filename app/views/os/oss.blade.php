@@ -2,12 +2,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Главная страница
+            Основные средства
             <small>Система ИТНК-ОБЗОР</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li class="active">Главная</li>
+            <li class="active">Основные средства</li>
         </ol>
     </section>
 

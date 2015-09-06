@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        @include('layouts.admin.head')
+        @include('layouts.dashboard.head')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        @include('layouts.admin.header')
+        @include('layouts.dashboard.header')
     </header>
-    @include('layouts.admin.aside')
+    @include('layouts.dashboard.aside')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -91,6 +91,6 @@
 
     </footer>
 </div>
-@include('layouts.admin.js')
+@include('layouts.dashboard.js')
 </body>
 </html>
