@@ -6,7 +6,7 @@
             <small>Система ИТНК-ОБЗОР</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Панель управления</a></li>
+            <li><a href="/home"><i class="fa fa-dashboard"></i> Панель управления</a></li>
             <li class="active">Основные средства</li>
         </ol>
     </section>
