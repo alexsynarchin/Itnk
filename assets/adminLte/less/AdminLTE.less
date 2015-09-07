@@ -67,3 +67,39 @@
 //-------------
 @import "miscellaneous.less";
 @import "print.less";
+.os-form-group {
+  label {
+    float: left;
+    display: block;
+    padding-right: 10px;
+    margin: 0;
+  }
+  .input-container {
+    overflow: hidden;
+  }
+  .line-input {
+    width: 100%;
+    padding: @padding-base-vertical 0;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    &:focus {
+      outline: none;
+    }
+  }
+  hr {
+    margin: 0;
+  }
+  .has-error {
+    hr {
+      color: red;
+    }
+  }
+  .message {
+    float: left;
+    span {
+      padding: 10px 0 0 5px;
+      font-size: 22px;
+    }
+  }
+}

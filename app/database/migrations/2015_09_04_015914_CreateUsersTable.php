@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration {
 			$t -> increments('id');
 			$t -> string('first_name');
 			$t -> string('last_name');
+			$t -> string('surname');
 			$t -> string('username');
 			$t -> string('password');
 			$t -> integer('organization_id');

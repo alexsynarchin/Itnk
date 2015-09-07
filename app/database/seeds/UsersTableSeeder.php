@@ -12,6 +12,7 @@ class SeedUsersTableTableSeeder extends Seeder {
 			array(
 				'first_name' => 'Ильмира',
 				'last_name' => 'Латыпова',
+				'surname' => 'Раиловна',
 				'username' => '1-0274903453',
 				'password' => Hash::make('123'),
 				'organization_id' => '1'

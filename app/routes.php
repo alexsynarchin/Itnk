@@ -18,9 +18,7 @@ Route::get('/', function()
 Route::get('/home', function(){
 	return View::make('home');
 })->before('auth');
-Route::get('/organization', function(){
-	return View::make('organization.organization');
-})->before('auth');
+Route::get('/organization', array('as' => 'organization', 'uses' => 'OrganizationsController@index'))->before('auth');
 Route::get('/documents', function(){
 	return View::make('documents.documents');
 })->before('auth');
