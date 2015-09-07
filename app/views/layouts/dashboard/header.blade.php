@@ -7,6 +7,7 @@
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
     </a>
+    <h5 class="organization-name">{{Auth::user() -> organization -> short_name}}</h5>
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
