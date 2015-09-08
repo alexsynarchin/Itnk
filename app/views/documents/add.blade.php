@@ -16,41 +16,41 @@
                 <h3 class="box-title">Документ первичного ввода</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            {{ Form::open(array('url' => action('DocumentsController@postAdd'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
-                <div class="box-body">
-                    <div class="form-group">
-                        <div class="os-form-group  col-md-3 col-xs-3">
-                            <label for="number" class="control-label">Номер документа</label>
-                            <div class="input-container">
-                                <input type="text" class="form-control" id="number" name="number">
-                            </div>
-                        </div>
-                        <div class="os-form-group col-md-4 col-xs-4">
-                            <label for="date" class="control-label">Дата документа</label>
-                            <div class="input-container">
-                                <input type="date" class="form-control" id="date" name="date">
-                            </div>
-                        </div>
-                        <div class="os-form-group col-md-5 col-xs-5">
-                            <label for="actual_date" class="control-label">Дата актуализации остатков</label>
-                            <div class="input-container">
-                                <input type="date" class="form-control" id="actual_date" name="actual_date">
-                            </div>
+            {{ Form::open(array('url' => '/documents/new', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            <div class="box-body">
+                <div class="form-group">
+                    <div class="os-form-group  col-md-3 col-xs-3">
+                        <label for="number" class="control-label">Номер документа</label>
+                        <div class="input-container">
+                            {{ Form::text('number', null, array('class' => 'form-control')) }}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-md-offset-3 col-xs-offset-2 col-md-6 col-xs-8">
-                            <label class="control-label">Выберите тип основных средств</label>
-                            <div class="input-container">
-                                {{ Form::select('os_type', Document::$os_types, null, array('class' => 'form-control')) }}
-                            </div>
+                  <div class="os-form-group col-md-4 col-xs-4">
+                        <label for="document_date" class="control-label">Дата документа</label>
+                        <div class="input-container">
+                           <input type="date" name="document_date" class="form-control">
                         </div>
                     </div>
+                    <div class="os-form-group col-md-5 col-xs-5">
+                        <label for="actual_date" class="control-label">Дата актуализации остатков</label>
+                        <div class="input-container">
+                            <input type="date" name="actual_date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="os-form-group col-md-offset-3 col-xs-offset-2 col-md-6 col-xs-8">
+                        <label class="control-label">Выберите тип основных средств</label>
+                        <div class="input-container">
+                            {{ Form::select('os_type', Document::$os_types, null, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
 
-                </div><!-- /.box-body -->
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Сохранить документ</button>
-                </div><!-- /.box-footer -->
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Сохранить документ</button>
+            </div><!-- /.box-footer -->
             {{ Form::close() }}
         </div>
 

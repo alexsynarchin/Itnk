@@ -10,14 +10,20 @@ class DocumentsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('documents.documents');
+		$documents = Document::get();
+		return View::make('documents.documents')->with('documents', $documents);
 	}
 	public function getAdd() {
 		return View::make('documents.add');
 	}
 	public function postAdd() {
-		$document = Document::create(Input::all());
-		return 'Добавлен: новый документ с номером ' . $document->number;
+		$document = new Document();
+		$document->number = Input::get('number');
+		$document->document_date = Input::get('document_date');
+		$document->actual_date = Input::get('actual_date');
+		$document->user_id = Auth::user()->id;
+		$document->save();
+		return Redirect::route('documents');
 	}
 	/**
 	 * Show the form for creating a new resource.

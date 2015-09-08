@@ -15,18 +15,19 @@ Route::get('/', function()
 {
 	return View::make('start');
 })->before('guest');
-Route::get('/home', function(){
-	return View::make('home');
-})->before('auth');
+Route::get('/home', [
+	'as' => 'рщьу',
+	'uses' => 'HomeController@index'
+])->before('auth');
 Route::get('/organization', array('as' => 'organization', 'uses' => 'OrganizationsController@index'))->before('auth');
 Route::get('/documents',[
 	'as' => 'documents', 'uses' => 'DocumentsController@index'
 ])->before('auth');
-Route::get('/documents/add', [
+Route::get('/documents/new', [
 	'as' => 'new-document',
 	'uses' => 'DocumentsController@getAdd'
 ])->before('auth');
-Route::post('/documents/add', [
+Route::post('/documents/new', [
 	'as' => 'new-document',
 	'uses' => 'DocumentsController@postAdd'
 ]);
