@@ -30,7 +30,13 @@ Route::get('/documents/new', [
 Route::post('/documents/new', [
 	'as' => 'new-document',
 	'uses' => 'DocumentsController@postAdd'
-]);
+])->before('auth');
+Route::bind('document', function($value, $route){
+	return Document::where('id', $value)->first();
+});
+Route::get('/documents/delete/{document}', [
+	'as' => 'delete-document', 'uses' => 'DocumentsController@getDelete'
+])->before('auth');
 Route::get('/oss', function(){
 	return View::make('os.oss');
 })->before('auth');

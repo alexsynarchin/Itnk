@@ -47,7 +47,7 @@
                                         <td class="actions icons">
                                             <a href="#"><i class="fa fa-eye"></i></a>
                                             <a href="#"><i class="fa fa-pencil-square-o"></i> </a>
-                                            <a href="#"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ URL::route('delete-document', $document->id) }}"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

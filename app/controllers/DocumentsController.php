@@ -25,6 +25,13 @@ class DocumentsController extends \BaseController {
 		$document->save();
 		return Redirect::route('documents');
 	}
+	public function getDelete(Document $document) {
+		if($document->user_id == Auth::user()->id){
+			$document->delete();
+		}
+
+		return Redirect::route('documents');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /documents/create
