@@ -10,9 +10,15 @@ class DocumentsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('documents.documents');
 	}
-
+	public function getAdd() {
+		return View::make('documents.add');
+	}
+	public function postAdd() {
+		$document = Document::create(Input::all());
+		return 'Добавлен: новый документ с номером ' . $document->number;
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /documents/create

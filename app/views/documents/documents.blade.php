@@ -106,7 +106,7 @@
             <div class="box">
 
                 <div class="box-body">
-                    <a class="btn btn-primary" href="#"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
+                    <a class="btn btn-primary" href="/documents/add"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
                 </div><!-- /.box-body -->
 
             </div><!-- /.box -->

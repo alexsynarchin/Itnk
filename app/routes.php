@@ -19,9 +19,17 @@ Route::get('/home', function(){
 	return View::make('home');
 })->before('auth');
 Route::get('/organization', array('as' => 'organization', 'uses' => 'OrganizationsController@index'))->before('auth');
-Route::get('/documents', function(){
-	return View::make('documents.documents');
-})->before('auth');
+Route::get('/documents',[
+	'as' => 'documents', 'uses' => 'DocumentsController@index'
+])->before('auth');
+Route::get('/documents/add', [
+	'as' => 'new-document',
+	'uses' => 'DocumentsController@getAdd'
+])->before('auth');
+Route::post('/documents/add', [
+	'as' => 'new-document',
+	'uses' => 'DocumentsController@postAdd'
+]);
 Route::get('/oss', function(){
 	return View::make('os.oss');
 })->before('auth');
