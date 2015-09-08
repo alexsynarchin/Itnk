@@ -16,7 +16,7 @@ Route::get('/', function()
 	return View::make('start');
 })->before('guest');
 Route::get('/home', [
-	'as' => 'рщьу',
+	'as' => 'home',
 	'uses' => 'HomeController@index'
 ])->before('auth');
 Route::get('/organization', array('as' => 'organization', 'uses' => 'OrganizationsController@index'))->before('auth');

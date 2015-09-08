@@ -19,13 +19,7 @@
             {{ Form::open(array('url' => '/documents/new', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="box-body">
                 <div class="form-group">
-                    <div class="os-form-group  col-md-3 col-xs-3">
-                        <label for="number" class="control-label">Номер документа</label>
-                        <div class="input-container">
-                            {{ Form::text('number', null, array('class' => 'form-control')) }}
-                        </div>
-                    </div>
-                  <div class="os-form-group col-md-4 col-xs-4">
+                  <div class="os-form-group col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">
                         <label for="document_date" class="control-label">Дата документа</label>
                         <div class="input-container">
                            <input type="date" name="document_date" class="form-control">

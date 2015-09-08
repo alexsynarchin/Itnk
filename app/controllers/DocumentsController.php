@@ -18,7 +18,6 @@ class DocumentsController extends \BaseController {
 	}
 	public function postAdd() {
 		$document = new Document();
-		$document->number = Input::get('number');
 		$document->document_date = Input::get('document_date');
 		$document->actual_date = Input::get('actual_date');
 		$document->user_id = Auth::user()->id;
