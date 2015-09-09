@@ -16,7 +16,6 @@ class CreateDocumentsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->integer('number');
 			$table->date('document_date');
 			$table->date('actual_date');
 			$table->integer('user_id');
@@ -36,7 +35,7 @@ class CreateDocumentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('unpdocuments');
+		Schema::drop('documents');
 	}
 
 }

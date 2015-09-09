@@ -11,32 +11,54 @@ class DocumentsController extends \BaseController {
 	public function index()
 	{
 		$documents = Document::get();
-		return View::make('documents.documents')->with('documents', $documents);
+		return View::make('documents.index')->with('documents', $documents);
 	}
-	public function getAdd() {
-		return View::make('documents.add');
-	}
-	public function postAdd() {
-		$document = new Document();
-		$document->document_date = Input::get('document_date');
-		$document->actual_date = Input::get('actual_date');
-		$document->user_id = Auth::user()->id;
-		$document->save();
-		return Redirect::route('documents');
-	}
-	public function getDelete(Document $document) {
-		if($document->user_id == Auth::user()->id){
-			$document->delete();
-		}
 
-		return Redirect::route('documents');
-	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /documents/create
 	 *
 	 * @return Response
 	 */
+	public function getAdd(){
+		return View::make('documents.add');
+	}
+	public function  postAdd(){
+		$document = Document::create(Input::all());
+		$document->user_id = Auth::user()->id;
+		$document->save();
+		return Redirect::action('DocumentsController@getView', [$document->id]);
+	}
+	public function getDelete($id) {
+		$document = Document::find($id);
+		$document->delete();
+		return Redirect::to('documents');
+	}
+	public function getView($id){
+		$document = Document::find($id);
+
+		// Если такой планеты нет, то вернем пользователю ошибку 404 - Не найдено
+		if (!$document) {
+			App::abort(404);
+		}
+
+		// Увеличим счетчик просмотров планеты
+
+		return View::make('documents/view', array('document' => $document));
+	}
+	public  function getEdit($id){
+		$document = Document::find($id);
+		// show the edit form and pass the nerd
+		return View::make('documents.edit', array('document' => $document));
+	}
+	public function postUpdate($id){
+		$document=Document::find($id);
+		$document->document_date = Input::get('document_date');
+		$document->actual_date = Input::get('actual_date');
+		$document->save();
+
+		return Redirect::action('DocumentsController@getView', [$document->id]);
+	}
 	public function create()
 	{
 		//
@@ -55,7 +77,7 @@ class DocumentsController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /documents/{id}
+	 * GET documents/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -91,7 +113,7 @@ class DocumentsController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /documents/{id}
+	 * DELETE /unp_documents/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

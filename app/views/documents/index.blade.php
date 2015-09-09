@@ -14,12 +14,17 @@
     <!-- Main content -->
     <section class="content">
 
-      <div class="col-md-8 col-xs-12">
-                <div class="box row">
+      <div class="col-md-12 col-xs-12">
+                <div class="document box row">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-file-text-o"></i> Черновики документов</h3>
+                        <h3 class="box-title"><i class="fa fa-file-text-o"></i> Документы первичного ввода</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
+                        <div class="control-bnts row">
+                            <div class="col-xs-4">
+                                <a class="add-btn btn btn-primary" href="/documents/add"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
+                            </div>
+                        </div>
                         <table class="list table table-bordered">
                             <tbody>
                             <tr>
@@ -34,20 +39,20 @@
                                 </th>
                                 <th>Действия</th>
                             </tr>
-                                @if($documents->count())
+                            @if($documents->count())
                                 @foreach($documents as $document)
                                     <tr>
                                         <td>{{ Document::$os_types[$document->os_type] }}</td>
                                         <td>{{$document->document_date}}</td>
-                                            <td>{{$document->actual_date}}</td>
+                                        <td>{{$document->actual_date}}</td>
                                         <td class="actions icons">
-                                            <a href="#"><i class="fa fa-eye"></i></a>
-                                            <a href="#"><i class="fa fa-pencil-square-o"></i> </a>
-                                            <a href="{{ URL::route('delete-document', $document->id) }}"><i class="fa fa-trash"></i></a>
+                                            <a href="{{action('DocumentsController@getView', [$document->id])}}"><i class="fa fa-eye"></i></a>
+                                            <a href="{{action('DocumentsController@getEdit',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
+                                            <a href="{{action('DocumentsController@getDelete',array($document->id))}}"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
-                                @endif
+                            @endif
                             </tbody></table>
                     </div><!-- /.box-body -->
                     <div class="box-footer clearfix">
@@ -60,15 +65,6 @@
                         </ul>
                     </div>
                 </div>
-        </div>
-        <div class="col-md-4">
-            <div class="box">
-
-                <div class="box-body">
-                    <a class="btn btn-primary" href="/documents/new"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
-                </div><!-- /.box-body -->
-
-            </div><!-- /.box -->
         </div>
 
     </section><!-- /.content -->

@@ -16,27 +16,19 @@
                 <h3 class="box-title">Документ первичного ввода</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            {{ Form::open(array('url' => action('DocumentsController@postAdd'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            {{ Form::model($document, array('url' => action('DocumentsController@postUpdate', $document->id), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="box-body">
                 <div class="form-group">
                     <div class="os-form-group col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">
                         <label for="document_date" class="control-label">Дата документа</label>
                         <div class="input-container">
-                            <input type="date" name="document_date" class="form-control">
+                            <input type="date" value="{{$document->document_date}}" name="document_date" class="form-control">
                         </div>
                     </div>
                     <div class="os-form-group col-md-5 col-xs-5">
                         <label for="actual_date" class="control-label">Дата актуализации остатков</label>
                         <div class="input-container">
-                            <input type="date" name="actual_date" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="os-form-group col-md-offset-3 col-xs-offset-2 col-md-6 col-xs-8">
-                        <label class="control-label">Выберите тип основных средств</label>
-                        <div class="input-container">
-                            {{ Form::select('os_type', Document::$os_types, null, array('class' => 'form-control')) }}
+                            <input type="date" name="actual_date" value="{{$document->actual_date}}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -46,6 +38,5 @@
             </div><!-- /.box-footer -->
             {{ Form::close() }}
         </div>
-
     </section>
 @stop
