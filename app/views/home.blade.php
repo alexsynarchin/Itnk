@@ -28,15 +28,17 @@
                             <th>Дата ввода в эксплуатацию</th>
                             <th>Действия</th>
                         </tr>
+                        @foreach ($os_movables as $os_movable)
                         <tr>
-                            <td>Здание</td>
-                            <td>2114528781001</td>
-                            <td align="center">103594354</td>
-                            <td align="center">103594354,22</td>
-                            <td align="center">8487539809</td>
-                            <td align="center">08.05.2000</td>
+                            <td>{{$os_movable->name}}</td>
+                            <td>{{$os_movable->number}}</td>
+                            <td align="center">{{$os_movable->okof}}</td>
+                            <td align="center">{{$os_movable->carrying_amount}}</td>
+                            <td align="center"></td>
+                            <td align="center"></td>
                             <td class="actions"><a href="btn btn-default"><i class="fa fa-eye"></i> Просмотр</a></td>
                         </tr>
+                        @endforeach
                     </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
