@@ -33,7 +33,11 @@
             <div class="box-body">
                 <div class="control-bnts row">
                     <div class="col-xs-4">
-                        <a href="#" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
+                        @if($document->os_type=='movables')
+
+                            <a href="{{action('OsMovablesController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
+
+@endif
                     </div>
                 </div>
                 <table class="list table table-bordered table-striped">
@@ -46,6 +50,17 @@
                         <th>Дата ввода в эксплуатацию</th>
                         <th>Действия</th>
                     </tr>
+                    @foreach ($items as $item)
+                        <tr>
+                            <td>{{{$item->name}}}</td>
+                            <td>{{{$item->number}}}</td>
+                            <td>{{{$item->okof}}}</td>
+                            <td>{{{$item->carrying_amount}}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endforeach
 
                 </table>
             </div><!-- /.box-body -->

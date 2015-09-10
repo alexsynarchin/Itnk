@@ -26,5 +26,6 @@ Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'))->
 Route::post('/login', array('as' => 'login', 'uses' => 'UsersController@handleLogin'));
 Route::get('/profile', array('as' => 'profile', 'uses' => 'UsersController@profile'))->before('auth');
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'));
-Route::get('documents','DocumentsController@index' );
+Route::get('documents','DocumentsController@index' )->before('auth');
 Route::controller('documents', 'DocumentsController');
+Route::controller('osMovable', 'OsMovablesController');

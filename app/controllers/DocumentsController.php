@@ -36,7 +36,14 @@ class DocumentsController extends \BaseController {
 	}
 	public function getView($id){
 		$document = Document::find($id);
+		$type=$document->os_type;
+		switch($type){
+			case 'movables':
+				$items = Document::find($id)->osMovables;
+				break;
+		}
 
+		//$items = Document::find($id)->os_movables;
 		// Если такой планеты нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);
@@ -44,7 +51,7 @@ class DocumentsController extends \BaseController {
 
 		// Увеличим счетчик просмотров планеты
 
-		return View::make('documents/view', array('document' => $document));
+		return View::make('documents/view', array( 'items' =>$items, 'document' => $document ));
 	}
 	public  function getEdit($id){
 		$document = Document::find($id);
