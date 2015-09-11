@@ -28,12 +28,12 @@
                             <th>Дата ввода в эксплуатацию</th>
                             <th>Действия</th>
                         </tr>
-                        @foreach ($os_movables as $os_movable)
+                        @foreach ($items as $item)
                         <tr>
-                            <td>{{$os_movable->name}}</td>
-                            <td>{{$os_movable->number}}</td>
-                            <td align="center">{{$os_movable->okof}}</td>
-                            <td align="center">{{$os_movable->carrying_amount}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->number}}</td>
+                            <td align="center">{{$item->okof}}</td>
+                            <td align="center">{{$item->carrying_amount}}</td>
                             <td align="center"></td>
                             <td align="center"></td>
                             <td class="actions"><a href="btn btn-default"><i class="fa fa-eye"></i> Просмотр</a></td>
@@ -60,6 +60,7 @@
                     <table class="list table table-bordered">
                         <tbody>
                         <tr>
+                            <th>Номер</th>
                             <th>
                                 Вид документа
                             </th>
@@ -74,12 +75,13 @@
                         @if($documents->count())
                             @foreach($documents as $document)
                                 <tr>
+                                    <td>{{$document->id}}</td>
                                     <td>{{ Document::$os_types[$document->os_type] }}</td>
                                     <td>{{$document->document_date}}</td>
                                     <td>{{$document->actual_date}}</td>
                                     <td class="actions icons">
                                         <a href="{{action('DocumentsController@getView', [$document->id])}}"><i class="fa fa-eye"></i></a>
-                                        <a href="{{action('DocumentsController@getEdit',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="{{action('DocumentsController@getView',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
                                         <a href="{{action('DocumentsController@getDelete',array($document->id))}}"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>

@@ -17,9 +17,9 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		$os_movables=Os_movable::get();
+		$items=Item::get();
 		$documents = Document::get();
-		return View::make('home',array('documents'=>$documents, 'os_movables'=>$os_movables));
+		return View::make('home',array('documents'=>$documents, 'items'=>$items));
 	}
 
 }

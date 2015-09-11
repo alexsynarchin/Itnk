@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOsMovablesTable extends Migration {
+class CreateItemsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateOsMovablesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('os_movables', function(Blueprint $table)
+		Schema::create('items', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
@@ -37,7 +37,7 @@ class CreateOsMovablesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('os_movables');
+		Schema::drop('items');
 	}
 
 }

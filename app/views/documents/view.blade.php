@@ -33,9 +33,9 @@
             <div class="box-body">
                 <div class="control-bnts row">
                     <div class="col-xs-4">
-                        @if($document->os_type=='movables')
+                        @if($document->os_type==('movables'||'value_movables||buildings'))
 
-                            <a href="{{action('OsMovablesController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
+                            <a href="{{action('ItemsController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
 
 @endif
                     </div>

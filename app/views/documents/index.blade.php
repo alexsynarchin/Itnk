@@ -28,6 +28,7 @@
                         <table class="list table table-bordered">
                             <tbody>
                             <tr>
+                                <th>Номер</th>
                                 <th>
                                     Вид Основных средств
                                 </th>
@@ -42,6 +43,7 @@
                             @if($documents->count())
                                 @foreach($documents as $document)
                                     <tr>
+                                        <td>{{$document->id}}</td>
                                         <td>{{ Document::$os_types[$document->os_type] }}</td>
                                         <td>{{$document->document_date}}</td>
                                         <td>{{$document->actual_date}}</td>

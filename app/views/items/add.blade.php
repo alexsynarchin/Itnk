@@ -16,7 +16,7 @@
             <h3 class="box-title">Движимое имущество</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        {{ Form::open(array('url' => action('OsMovablesController@postAdd',$document->id), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('url' => action('ItemsController@postAdd',$document->id), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
         <div class="box-body">
             <div class="form-group">
                 <div class="os-form-group col-md-12 col-xs-12">
@@ -56,7 +56,7 @@
                 <div class="os-form-group col-md-4 col-xs-4">
                     <label for="name" class="control-label">Источник финансирования:</label>
                     <div class="input-container">
-                        {{ Form::select('financing_source', Os_movable::$os_finance, null, array('class' => 'form-control')) }}
+                        {{ Form::select('financing_source', Item::$os_finance, null, array('class' => 'form-control')) }}
                     </div>
                 </div>
             </div>

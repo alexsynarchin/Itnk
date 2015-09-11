@@ -1,6 +1,6 @@
 <?php
 
-class Os_movable extends \Eloquent {
+class Item extends \Eloquent {
 	protected $fillable = ['name','number','carrying_amount','financing_source','os_view','okof','additional_field'];
 	public function document(){
 		return $this->belongsTo('Document');

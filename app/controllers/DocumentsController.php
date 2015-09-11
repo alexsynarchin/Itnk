@@ -38,12 +38,11 @@ class DocumentsController extends \BaseController {
 		$document = Document::find($id);
 		$type=$document->os_type;
 		switch($type){
-			case 'movables':
-				$items = Document::find($id)->osMovables;
+			case ('movables'||'value_movables'||'buildings'):
+				$items = Document::find($id)->items;
 				break;
 		}
 
-		//$items = Document::find($id)->os_movables;
 		// Если такой планеты нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);

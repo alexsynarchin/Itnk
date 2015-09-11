@@ -451,7 +451,7 @@ window.ZeroClipboard_TableTools = ZeroClipboard_TableTools;
  *   instance or DataTables settings object.
  * @param {Object} oOpts TableTools options
  * @param {String} oOpts.sSwfPath ZeroClipboard SWF path
- * @param {String} oOpts.sRowSelect Row selection options - 'none', 'single', 'multi' or 'os'
+ * @param {String} oOpts.sRowSelect Row selection options - 'none', 'single', 'multi' or 'items'
  * @param {Function} oOpts.fnPreRowSelect Callback function just prior to row selection
  * @param {Function} oOpts.fnRowSelected Callback function just after row selection
  * @param {Function} oOpts.fnRowDeselected Callback function when row is deselected
@@ -1553,7 +1553,7 @@ TableTools.prototype = {
 			// When using OS style selection, we want to cancel the shift text
 			// selection, but only when the shift key is used (so you can
 			// actually still select text in the table)
-			if ( this.s.select.type === 'os' ) {
+			if ( this.s.select.type === 'items' ) {
 				$(dt.nTBody).on( 'mousedown.DTTT_Select', 'tr', function(e) {
 					if ( e.shiftKey ) {
 
@@ -1591,7 +1591,7 @@ TableTools.prototype = {
 
 				// Shift click, ctrl click and simple click handling to make
 				// row selection a lot like a file system in desktop OSs
-				if ( select.type == 'os' ) {
+				if ( select.type == 'items' ) {
 					if ( e.ctrlKey || e.metaKey ) {
 						// Add or remove from the selection
 						if ( that.fnIsSelected( row ) ) {

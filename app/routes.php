@@ -20,7 +20,7 @@ Route::get('/home', [
 ])->before('auth');
 Route::get('/organization', array('as' => 'organization', 'uses' => 'OrganizationsController@index'))->before('auth');
 Route::get('/oss', function(){
-    return View::make('os.oss');
+    return View::make('items.oss');
 })->before('auth');
 Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'))->before('guest');
 Route::post('/login', array('as' => 'login', 'uses' => 'UsersController@handleLogin'));
@@ -28,4 +28,4 @@ Route::get('/profile', array('as' => 'profile', 'uses' => 'UsersController@profi
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'));
 Route::get('documents','DocumentsController@index' )->before('auth');
 Route::controller('documents', 'DocumentsController');
-Route::controller('osMovable', 'OsMovablesController');
+Route::controller('Items', 'ItemsController');
