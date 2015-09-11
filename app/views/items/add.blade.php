@@ -2,18 +2,18 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Документы
+        Основные средства
         <small>Система ИТНК-ОБЗОР</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/home"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active">Документы</li>
+        <li class="active">Основные средства</li>
     </ol>
 </section>
 <section class="content">
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Движимое имущество</h3>
+            <h3 class="box-title">Ввод основного средства</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         {{ Form::open(array('url' => action('ItemsController@postAdd',$document->id), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
