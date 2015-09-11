@@ -15,6 +15,9 @@
         <div class="document box">
             <div class="box-header with-border">
                 <div class="form-group">
+                    <div class="os-form-group col-xs-1">
+                        <label class="control-label">№: {{$document->id}}</label>
+                    </div>
                     <div class="os-form-group col-xs-3">
                         <label class="control-label">Дата документа:</label><span class="date">{{$document->document_date}}</span>
                     </div>
