@@ -33,24 +33,21 @@
                         <input type="number" name="number" class="form-control">
                     </div>
                 </div>
-                <div class="os-form-group col-md-4 col-xs-4">
-                    <label for="name" class="control-label">Вид ОС:</label>
-                    <div class="input-container">
-                        <input type="text" name="os_view" class="form-control">
-                    </div>
-                </div>
-                <div class="os-form-group col-md-4 col-xs-4">
-                    <label for="name" class="control-label">Код ОКОФ:</label>
-                    <div class="input-container">
-                        <input type="number" name="okof" class="form-control">
-                    </div>
-                </div>
+                @if(($document->os_type=='movables')||($document->os_type=='value_movables')||($document->os_type=='buildings'))
+                    @include('items.okof')
+                @endif
+                @if($document->os_type==('parcels'))
+                    @include('items.parcel')
+                @endif
             </div>
+            @if($document->os_type=='buildings')
+                @include('items.building')
+            @endif
             <div class="form-group">
                 <div class="os-form-group col-md-6 col-xs-6">
                     <label for="name" class="control-label">Балансовая стоимость:</label>
                     <div class="input-container">
-                        <input type="text" name="carrying_amount" class="form-control">
+                        <input type="decimal" name="carrying_amount" class="form-control">
                     </div>
                 </div>
                 <div class="os-form-group col-md-4 col-xs-4">
@@ -60,6 +57,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="os-form-group col-xs-12">
                     <label  class="control-label">Дополнительное поле:</label>

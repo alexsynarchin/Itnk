@@ -37,10 +37,8 @@ class DocumentsController extends \BaseController {
 	public function getView($id){
 		$document = Document::find($id);
 		$type=$document->os_type;
-		switch($type){
-			case ('movables'||'value_movables'||'buildings'):
-				$items = Document::find($id)->items;
-				break;
+		if($type==('movables'||'value_movables'||'buildings')){
+			$items = Document::find($id)->items;
 		}
 
 		// Если такой планеты нет, то вернем пользователю ошибку 404 - Не найдено

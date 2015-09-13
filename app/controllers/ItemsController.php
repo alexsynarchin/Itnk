@@ -17,10 +17,52 @@ $document=Document::find($id);
 return View::make('items.add',['document' => $document]);
 }
 public function postAdd($id){
-	$Item = Item::create(Input::all());
-	$Item -> document_id = $id;
-	$Item->save();
-	return Redirect::action('DocumentsController@getView',[$Item->document_id]);
+	$document=Document::find($id);
+	$type=$document->os_type;
+	if(($type=='movables')||($type=='value_movables')){
+		$item = Item::create(Input::all());
+		$item -> document_id = $id;
+		$item->save();
+		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+	}
+	if($type=='buildings'){
+		$item=new Item;
+		$item -> name=Input::get('name');
+		$item -> number=Input::get('number');
+		$item -> os_view=Input::get('os_view');
+		$item -> okof=Input::get('okof');
+		$item->carrying_amount=Input::get('carrying_amount');
+		$item->carrying_amount=Input::get('financing_source');
+		$item->carrying_amount=Input::get('additional_field');
+		$item -> document_id = $id;
+		$item->save();
+		$building=new Building;
+		$building->appointment=Input::get('appointment');
+		$building->wall_material=Input::get('wall_material');
+		$building->date_construction=Input::get('date_construction');
+		$building->floors=Input::get('floors');
+		$item->building()->save($building);
+		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+	}
+	if($type=='parcels'){
+		$item=new Item;
+		$item -> name=Input::get('name');
+		$item -> number=Input::get('number');
+		$item->carrying_amount=Input::get('carrying_amount');
+		$item->carrying_amount=Input::get('financing_source');
+		$item->carrying_amount=Input::get('additional_field');
+		$item -> document_id = $id;
+		$item->save();
+		$parcel=new Parcel;
+		$parcel->cadastral=Input::get('cadastral');
+		$parcel->assigning_land=Input::get('assigning_land');
+		$parcel->area=Input::get('area');
+		$item->parcel()->save($parcel);
+		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+	}
+
+
+
 }
 	/**
 	 * Show the form for creating a new resource.

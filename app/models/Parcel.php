@@ -1,6 +1,6 @@
 <?php
 
-class Building extends \Eloquent {
+class Parcel extends \Eloquent {
 	protected $fillable = [];
 	public $timestamps = false;
 	public function item(){

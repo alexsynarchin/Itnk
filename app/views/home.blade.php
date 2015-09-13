@@ -28,17 +28,7 @@
                             <th>Дата ввода в эксплуатацию</th>
                             <th>Действия</th>
                         </tr>
-                        @foreach ($items as $item)
-                        <tr>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->number}}</td>
-                            <td align="center">{{$item->okof}}</td>
-                            <td align="center">{{$item->carrying_amount}}</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <td class="actions"><a href="btn btn-default"><i class="fa fa-eye"></i> Просмотр</a></td>
-                        </tr>
-                        @endforeach
+
                     </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">

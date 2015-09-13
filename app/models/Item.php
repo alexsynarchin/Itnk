@@ -5,6 +5,12 @@ class Item extends \Eloquent {
 	public function document(){
 		return $this->belongsTo('Document');
 	}
+	public function building(){
+		return $this->hasOne('Building');
+	}
+	public function parcel(){
+		return $this->hasOne('Parcel');
+	}
 	public static $os_finance = array(
 		'budget' => 'Бюджет',
 		'out_budget' => 'Внебюджет'
