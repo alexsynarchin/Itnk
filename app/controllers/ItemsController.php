@@ -64,6 +64,32 @@ public function postAdd($id){
 
 
 }
+	public function getView($id){
+		$item=Item::find($id);
+		$document=Item::find($id)->document();
+		$type=$item->document->os_type;
+		switch($type){
+			case 'movables'||'value_movables':
+				return View::make('items.view', array('item'=>$item,'document'=>$document));
+				break;
+			case 'buildings':
+				$building=Item::find($id)->building();
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'building'=>$building));
+			break;
+			case 'parcels':
+				$parcel=Item::find($id)->parcel;
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'parcel'=>$parcel));
+			break;
+			default:
+				return View::make('hello');
+		}
+	}
+	public function getDelete($id){
+		$item=Item::find($id);
+		$document=Item::find($id)->document();
+		$item->delete();
+		return Redirect::action('DocumentsController@getView', [$item->document->id]);
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /items/create

@@ -61,7 +61,7 @@
                             <td>{{{$item->carrying_amount}}}</td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     @endforeach
 

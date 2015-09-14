@@ -67,6 +67,7 @@
 //-------------
 @import "miscellaneous.less";
 @import "print.less";
+
 .layout-boxed{
   background: #fafdff;
   background-image: none;
@@ -119,21 +120,22 @@
   .actions{
     text-align: center;
     &.icons{
-      font-size: 1.7em ;
+      font-size: 1.4em ;
       padding: 0;
       a{
-        padding:0 4px;
+        padding:0 3px;
       }
     }
   }
 }
+
 .document{
   .box-header{
     .os-form-group{margin-top:6px;}
     .edit-btn{
       text-transform: uppercase;
     }
-    font-size:1.1em;
+    font-size:1.05em;
     .date{
       &:extend(.bg-light-blue);
       color:#fff;
@@ -143,11 +145,32 @@
     }
   }
   .box-body{
+
     .control-bnts{
       margin-bottom: 10px;
       .add-btn{
         text-transform: uppercase;
       }
     }
+  }
+}
+.os{
+  .box-header{
+    overflow: hidden;
+  }
+  .btns{
+    float:right;
+    .btn{
+      font-size: 1.3em;
+      text-transform: uppercase;
+     padding: 4px 8px;
+
+    }
+
+  }
+}
+.static{
+  .box-body{
+    font-size: 16px;
   }
 }

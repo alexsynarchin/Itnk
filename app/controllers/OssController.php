@@ -10,7 +10,8 @@ class OssController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$items=Item::get();
+		return View::make('items.oss')->with('items',$items);
 	}
 
 	/**

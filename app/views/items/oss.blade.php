@@ -30,15 +30,17 @@
                                 <th>Дата ввода в эксплуатацию</th>
                                 <th>Действия</th>
                             </tr>
-                            <tr>
-                                <td>Здание</td>
-                                <td>2114528781001</td>
-                                <td align="center">103594354</td>
-                                <td align="center">103594354,22</td>
-                                <td align="center">8487539809</td>
-                                <td align="center">08.05.2000</td>
-                                <td class="actions"><a href="btn btn-default"><i class="fa fa-eye"></i> Просмотр</a></td>
-                            </tr>
+                            @foreach ($items as $item)
+                                <tr>
+                                    <td>{{{$item->name}}}</td>
+                                    <td>{{{$item->number}}}</td>
+                                    <td>{{{$item->okof}}}</td>
+                                    <td>{{{$item->carrying_amount}}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div><!-- /.box-body -->
                     <div class="box-footer clearfix">

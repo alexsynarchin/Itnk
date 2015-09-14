@@ -13,35 +13,6 @@
 
     <!-- Main content -->
 <section class="content">
-            <div class="box ">
-                <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-file-text-o"></i> Основные средства</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body ">
-                    <table class="list table table-bordered table-striped">
-                        <tr>
-                            <th>Наименование</th>
-                            <th>Инвентарный номер</th>
-                            <th>Код ОКОФ</th>
-                            <th>Балансовая стоимость</th>
-                            <th>Остаточная стоимость</th>
-                            <th>Дата ввода в эксплуатацию</th>
-                            <th>Действия</th>
-                        </tr>
-
-                    </table>
-                </div><!-- /.box-body -->
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-            </div>
-
                 <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-file-text-o"></i> Документы</h3>
@@ -89,5 +60,43 @@
                     </ul>
                 </div>
             </div>
+    <div class="box ">
+        <div class="box-header with-border">
+            <h3 class="box-title"><i class="fa fa-file-text-o"></i> Основные средства</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body ">
+            <table class="list table table-bordered table-striped">
+                <tr>
+                    <th>Наименование</th>
+                    <th>Инвентарный номер</th>
+                    <th>Код ОКОФ</th>
+                    <th>Балансовая стоимость</th>
+                    <th>Остаточная стоимость</th>
+                    <th>Дата ввода в эксплуатацию</th>
+                    <th>Действия</th>
+                </tr>
+                @foreach ($items as $item)
+                    <tr>
+                        <td>{{{$item->name}}}</td>
+                        <td>{{{$item->number}}}</td>
+                        <td>{{{$item->okof}}}</td>
+                        <td>{{{$item->carrying_amount}}}</td>
+                        <td></td>
+                        <td></td>
+                        <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                @endforeach
+            </table>
+        </div><!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
 </section>
 @stop

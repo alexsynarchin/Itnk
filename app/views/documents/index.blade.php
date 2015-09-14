@@ -13,9 +13,7 @@
 
     <!-- Main content -->
     <section class="content">
-
-      <div class="col-md-12 col-xs-12">
-                <div class="document box row">
+                <div class="document box">
                     <div class="box-header with-border">
                         <h3 class="box-title"><i class="fa fa-file-text-o"></i> Документы первичного ввода</h3>
                     </div><!-- /.box-header -->
@@ -67,7 +65,5 @@
                         </ul>
                     </div>
                 </div>
-        </div>
-
     </section><!-- /.content -->
 @stop
