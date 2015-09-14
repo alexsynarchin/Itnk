@@ -147,7 +147,7 @@
                         <div class="os-form-group col-xs-12">
                             <label class="control-label">Адрес:</label>
                             <div class="input-container">
-                                <span >{{$item->address->state}} {{$item->address->district}} {{$item->address->city}} {{$item->address->street}} {{$item->address->building_number}} {{$item->address->building_number_2}}</span>
+                                <span >{{$item->address->state}}, {{$item->address->district}}, {{$item->address->city}}, {{$item->address->street}}, {{$item->address->building_number}}, {{$item->address->building_number_2}}</span>
                             </div>
                             <hr>
                         </div>
