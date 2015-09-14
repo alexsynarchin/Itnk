@@ -43,6 +43,9 @@
             @if($document->os_type=='buildings')
                 @include('items.building')
             @endif
+            @if(($document->os_type=='buildings')||($document->os_type=='parcels'))
+                @include('items.address')
+            @endif
             <div class="form-group">
                 <div class="os-form-group col-md-6 col-xs-6">
                     <label for="name" class="control-label">Балансовая стоимость:</label>

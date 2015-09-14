@@ -142,6 +142,17 @@
                         </div>
                     </div>
                 @endif
+                @if(($item->document->os_type=='buildings')||($item->document->os_type=='parcels'))
+                    <div class="row form-group">
+                        <div class="os-form-group col-xs-12">
+                            <label class="control-label">Адрес:</label>
+                            <div class="input-container">
+                                <span >{{$item->address->state}} {{$item->address->district}} {{$item->address->city}} {{$item->address->street}} {{$item->address->building_number}} {{$item->address->building_number_2}}</span>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                @endif
                 <div class="row form-group">
                     <div class="os-form-group col-xs-6">
                         <label class="control-label">Балансовая стоимость:</label>

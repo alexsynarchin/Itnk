@@ -42,6 +42,14 @@ public function postAdd($id){
 		$building->date_construction=Input::get('date_construction');
 		$building->floors=Input::get('floors');
 		$item->building()->save($building);
+		$address=new Address;
+		$address->state=Input::get('state');
+		$address->district=Input::get('district');
+		$address->city=Input::get('city');
+		$address->street=Input::get('street');
+		$address->building_number=Input::get('building_number');
+		$address->building_number_2=Input::get('building_number_2');
+		$item->address()->save($address);
 		return Redirect::action('DocumentsController@getView',[$item->document_id]);
 	}
 	if($type=='parcels'){
@@ -58,6 +66,14 @@ public function postAdd($id){
 		$parcel->assigning_land=Input::get('assigning_land');
 		$parcel->area=Input::get('area');
 		$item->parcel()->save($parcel);
+		$address=new Address;
+		$address->state=Input::get('state');
+		$address->district=Input::get('district');
+		$address->city=Input::get('city');
+		$address->street=Input::get('street');
+		$address->building_number=Input::get('building_number');
+		$address->building_number_2=Input::get('building_number_2');
+		$item->address()->save($address);
 		return Redirect::action('DocumentsController@getView',[$item->document_id]);
 	}
 
@@ -74,11 +90,13 @@ public function postAdd($id){
 				break;
 			case 'buildings':
 				$building=Item::find($id)->building();
-				return View::make('items.view', array('item'=>$item,'document'=>$document, 'building'=>$building));
+				$address=Address::find($id)->address();
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'building'=>$building, 'address'=>$address));
 			break;
 			case 'parcels':
 				$parcel=Item::find($id)->parcel;
-				return View::make('items.view', array('item'=>$item,'document'=>$document, 'parcel'=>$parcel));
+				$address=Address::find($id)->address();
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'parcel'=>$parcel, 'address'=>$address));
 			break;
 			default:
 				return View::make('hello');
