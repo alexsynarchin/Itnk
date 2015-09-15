@@ -20,22 +20,39 @@ public function postAdd($id){
 	$document=Document::find($id);
 	$type=$document->os_type;
 	if(($type=='movables')||($type=='value_movables')){
-		$item = Item::create(Input::all());
-		$item -> document_id = $id;
-		$item->save();
-		return Redirect::action('DocumentsController@getView',[$item->document_id]);
-	}
-	if($type=='buildings'){
-		$item=new Item;
+		$item = new Item;
 		$item -> name=Input::get('name');
 		$item -> number=Input::get('number');
 		$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
 		$item->carrying_amount=Input::get('carrying_amount');
 		$item->carrying_amount=Input::get('financing_source');
-		$item->carrying_amount=Input::get('additional_field');
+		$item->additional_field=Input::get('additional_field');
 		$item -> document_id = $id;
 		$item->save();
+		$variable = new Variable;
+		$variable -> residual_value = Input::get('residual_value');
+		$variable -> monthly_rate = Input::get('monthly_rate');
+		$variable -> useful_life = Input::get('useful_life');
+		$item->variable()->save($variable);
+		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+	}
+	if($type=='buildings'){
+		$item = new Item;
+		$item -> name=Input::get('name');
+		$item -> number=Input::get('number');
+		$item -> os_view=Input::get('os_view');
+		$item -> okof=Input::get('okof');
+		$item->carrying_amount=Input::get('carrying_amount');
+		$item->carrying_amount=Input::get('financing_source');
+		$item->additional_field=Input::get('additional_field');
+		$item -> document_id = $id;
+		$item->save();
+		$variable = new Variable;
+		$variable -> residual_value = Input::get('residual_value');
+		$variable -> monthly_rate = Input::get('monthly_rate');
+		$variable -> useful_life = Input::get('useful_life');
+		$item->variable()->save($variable);
 		$building=new Building;
 		$building->appointment=Input::get('appointment');
 		$building->wall_material=Input::get('wall_material');
@@ -58,7 +75,7 @@ public function postAdd($id){
 		$item -> number=Input::get('number');
 		$item->carrying_amount=Input::get('carrying_amount');
 		$item->carrying_amount=Input::get('financing_source');
-		$item->carrying_amount=Input::get('additional_field');
+		$item->additional_field=Input::get('additional_field');
 		$item -> document_id = $id;
 		$item->save();
 		$parcel=new Parcel;
@@ -86,12 +103,14 @@ public function postAdd($id){
 		$type=$item->document->os_type;
 		switch($type){
 			case 'movables'||'value_movables':
-				return View::make('items.view', array('item'=>$item,'document'=>$document));
+				$variable=Item::find($id)->variable();
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'variable'=>$variable));
 				break;
 			case 'buildings':
+				$variable=Item::find($id)->variable();
 				$building=Item::find($id)->building();
 				$address=Address::find($id)->address();
-				return View::make('items.view', array('item'=>$item,'document'=>$document, 'building'=>$building, 'address'=>$address));
+				return View::make('items.view', array('item'=>$item,'document'=>$document, 'building'=>$building, 'address'=>$address, 'variable'=>$variable));
 			break;
 			case 'parcels':
 				$parcel=Item::find($id)->parcel;

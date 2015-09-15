@@ -169,6 +169,31 @@
                         <hr>
                     </div>
                 </div>
+                @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
+                    <div class="row form-group">
+                        <div class="os-form-group col-xs-5">
+                            <label class="control-label">Остаточная стоимость:</label>
+                            <div class="input-container">
+                                <span >{{$item->variable->residual_value}}</span>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="os-form-group col-xs-3">
+                            <label class="control-label">Месячная норма:</label>
+                            <div class="input-container">
+                                <span >{{$item->variable->monthly_rate}}</span>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="os-form-group col-xs-4">
+                            <label class="control-label">Срок полезного использования:</label>
+                            <div class="input-container">
+                                <span >{{$item->variable->useful_life}}</span>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                @endif
                 <div class="row form-group">
                     <div class="os-form-group col-xs-12">
                         <label class="control-label">Дополнительное поле:<hr></label>

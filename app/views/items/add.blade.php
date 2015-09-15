@@ -60,6 +60,28 @@
                     </div>
                 </div>
             </div>
+            @if(($document->os_type=='movables')||($document->os_type=='value_movables')||($document->os_type=='buildings'))
+                <div class="form-group">
+                    <div class="os-form-group col-md-5 col-xs-5">
+                        <label for="name" class="control-label">Остаточная стоимость:</label>
+                        <div class="input-container">
+                            <input type="decimal" name="residual_value" class="form-control">
+                        </div>
+                    </div>
+                    <div class="os-form-group col-md-3 col-xs-3">
+                        <label for="name" class="control-label">Месячная норма:</label>
+                        <div class="input-container">
+                            <input type="number" name="monthly_rate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="os-form-group col-md-4 col-xs-4">
+                        <label for="name" class="control-label">Срок полезного использования:</label>
+                        <div class="input-container">
+                            <input type="number" name="useful_life" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <div class="form-group">
                 <div class="os-form-group col-xs-12">

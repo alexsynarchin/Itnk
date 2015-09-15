@@ -14,6 +14,9 @@ class Item extends \Eloquent {
 	public  function address(){
 		return $this->hasOne('Address');
 	}
+	public  function variable(){
+		return $this->hasOne('Variable');
+	}
 	public static $os_finance = array(
 		'budget' => 'Бюджет',
 		'out_budget' => 'Внебюджет'
