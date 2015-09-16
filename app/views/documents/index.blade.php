@@ -48,7 +48,7 @@
                                         <td class="actions icons">
                                             <a href="{{action('DocumentsController@getView', [$document->id])}}"><i class="fa fa-eye"></i></a>
                                             <a href="{{action('DocumentsController@getEdit',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
-                                            <a href="{{action('DocumentsController@getDelete',array($document->id))}}"><i class="fa fa-trash"></i></a>
+                                            <a href="{{action('DocumentsController@getDelete',array($document->id))}}"><i class="fa fa-trash "></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

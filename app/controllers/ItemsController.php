@@ -26,7 +26,7 @@ public function postAdd($id){
 		$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
 		$item->carrying_amount=Input::get('carrying_amount');
-		$item->carrying_amount=Input::get('financing_source');
+		$item->financing_source=Input::get('financing_source');
 		$item->additional_field=Input::get('additional_field');
 		$item -> document_id = $id;
 		$item->save();
@@ -44,7 +44,7 @@ public function postAdd($id){
 		$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
 		$item->carrying_amount=Input::get('carrying_amount');
-		$item->carrying_amount=Input::get('financing_source');
+		$item->financing_source=Input::get('financing_source');
 		$item->additional_field=Input::get('additional_field');
 		$item -> document_id = $id;
 		$item->save();
@@ -74,7 +74,7 @@ public function postAdd($id){
 		$item -> name=Input::get('name');
 		$item -> number=Input::get('number');
 		$item->carrying_amount=Input::get('carrying_amount');
-		$item->carrying_amount=Input::get('financing_source');
+		$item->financing_source=Input::get('financing_source');
 		$item->additional_field=Input::get('additional_field');
 		$item -> document_id = $id;
 		$item->save();
@@ -124,8 +124,33 @@ public function postAdd($id){
 	public function getDelete($id){
 		$item=Item::find($id);
 		$document=Item::find($id)->document();
-		$item->delete();
-		return Redirect::action('DocumentsController@getView', [$item->document->id]);
+		$type=$item->document->os_type;
+		switch($type){
+			case 'movables'||'value_movables':
+				$variable=Item::find($id)->variable();
+				$variable->delete();
+				$item->delete();
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+			break;
+			case 'buildings':
+				$variable=Item::find($id)->variable();
+				$building=Item::find($id)->building();
+				$address=Address::find($id)->address();
+				$variable->delete();
+				$address->delete();
+				$building->delete();
+				$item->delete();
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				break;
+			case 'parcels':
+				$parcel=Item::find($id)->parcel;
+				$address=Address::find($id)->address();
+				$address->delete();
+				$parcel->delete();
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+			break;
+		}
+
 	}
 	/**
 	 * Show the form for creating a new resource.

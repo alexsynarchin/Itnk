@@ -22,13 +22,13 @@
                     <div class="os-form-group col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">
                         <label for="document_date" class="control-label">Дата документа</label>
                         <div class="input-container">
-                            <input type="date" name="document_date" class="form-control">
+                            <input type="date" required="required"  name="document_date" class="form-control">
                         </div>
                     </div>
                     <div class="os-form-group col-md-5 col-xs-5">
                         <label for="actual_date" class="control-label">Дата актуализации остатков</label>
                         <div class="input-container">
-                            <input type="date" name="actual_date" class="form-control">
+                            <input type="date" name="actual_date" required="required"  class="form-control">
                         </div>
                     </div>
                 </div>

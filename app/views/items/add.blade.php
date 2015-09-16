@@ -22,7 +22,7 @@
                 <div class="os-form-group col-md-12 col-xs-12">
                     <label for="name" class="control-label">Наименование:</label>
                     <div class="input-container">
-                        <input type="text" name="name" class="form-control">
+                        <input required="required" type="text" name="name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="os-form-group col-md-4 col-xs-4">
                     <label for="name" class="control-label">Инвертарный номер:</label>
                     <div class="input-container">
-                        <input type="number" name="number" class="form-control">
+                        <input required="required" type="text" name="number" class="form-control">
                     </div>
                 </div>
                 @if(($document->os_type=='movables')||($document->os_type=='value_movables')||($document->os_type=='buildings'))
@@ -50,7 +50,7 @@
                 <div class="os-form-group col-md-6 col-xs-6">
                     <label for="name" class="control-label">Балансовая стоимость:</label>
                     <div class="input-container">
-                        <input type="decimal" name="carrying_amount" class="form-control">
+                        <input required="required" type="decimal" name="carrying_amount" class="form-control">
                     </div>
                 </div>
                 <div class="os-form-group col-md-4 col-xs-4">
@@ -65,19 +65,19 @@
                     <div class="os-form-group col-md-5 col-xs-5">
                         <label for="name" class="control-label">Остаточная стоимость:</label>
                         <div class="input-container">
-                            <input type="decimal" name="residual_value" class="form-control">
+                            <input  type="decimal" name="residual_value" class="form-control">
                         </div>
                     </div>
                     <div class="os-form-group col-md-3 col-xs-3">
                         <label for="name" class="control-label">Месячная норма:</label>
                         <div class="input-container">
-                            <input type="number" name="monthly_rate" class="form-control">
+                            <input required="required" type="number" name="monthly_rate" class="form-control">
                         </div>
                     </div>
                     <div class="os-form-group col-md-4 col-xs-4">
                         <label for="name" class="control-label">Срок полезного использования:</label>
                         <div class="input-container">
-                            <input type="number" name="useful_life" class="form-control">
+                            <input  required="required" type="number" name="useful_life" class="form-control">
                         </div>
                     </div>
                 </div>
