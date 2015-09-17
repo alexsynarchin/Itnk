@@ -20,7 +20,7 @@
                         <h3 class="box-title"><i class="fa fa-file-text-o"></i> Основные средства</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body ">
-                        <table class="list table table-bordered table-striped">
+                        <table class="list table table-bordered table-striped table-hover">
                             <tr>
                                 <th>Наименование</th>
                                 <th>Инвентарный номер</th>
@@ -38,7 +38,7 @@
                                     <td>{{{$item->carrying_amount}}}</td>
                                     <td>{{{$item->variable->residual_value}}}</td>
                                     <td></td>
-                                    <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a  class="action switalert"><i class="fa fa-trash"></i></a></td>
+                                    <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -57,17 +57,4 @@
         </div>
 
     </section><!-- /.content -->
-@stop
-@section('user-scripts')
-    @if ($items->count())
-        <script>
-            $('.switalert').on('click', function(){
-                swal({   title: "Удаление ОС",   text: "Вы уверены что хотите удалить основное средство",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
-                    if (isConfirm) {
-                        return window.location.href='{{action('ItemsController@getDelete',array($item->id))}}'
-                    }
-                });
-            })
-        </script>
-    @endif
 @stop

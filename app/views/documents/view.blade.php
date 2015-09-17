@@ -43,7 +43,7 @@
 @endif
                     </div>
                 </div>
-                <table class="list table table-bordered table-striped">
+                <table class="list table table-bordered table-striped table-hover">
                     <tr>
                         <th>Наименование</th>
                         <th>Инвентарный номер</th>

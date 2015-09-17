@@ -23,7 +23,7 @@
                                 <a class="add-btn btn btn-primary" href="/documents/add"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
                             </div>
                         </div>
-                        <table class="list table table-bordered">
+                        <table class="list table table-bordered table-hover">
                             <tbody>
                             <tr>
                                 <th>Номер</th>

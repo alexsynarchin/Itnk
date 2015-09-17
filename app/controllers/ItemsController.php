@@ -122,6 +122,7 @@ public function postAdd($id){
 		}
 	}
 	public function getDelete($id){
+		$name = Route::currentRouteName();
 		$item=Item::find($id);
 		$document=Item::find($id)->document();
 		$type=$item->document->os_type;
@@ -130,7 +131,8 @@ public function postAdd($id){
 				$variable=Item::find($id)->variable();
 				$variable->delete();
 				$item->delete();
-				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::route(Route::currentRouteName());
+				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
 			case 'buildings':
 				$variable=Item::find($id)->variable();
@@ -140,15 +142,16 @@ public function postAdd($id){
 				$address->delete();
 				$building->delete();
 				$item->delete();
-				return Redirect::route($this);
-				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::route(Route::currentRouteName());
+				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
 				break;
 			case 'parcels':
 				$parcel=Item::find($id)->parcel;
 				$address=Address::find($id)->address();
 				$address->delete();
 				$parcel->delete();
-				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::route(Route::currentRouteName());
+				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
 		}
 
