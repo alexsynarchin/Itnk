@@ -7,8 +7,10 @@
     <!-- AdminLTE App -->
 <script src="/lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="/lte/plugins/fastclick/fastclick.min.js"></script>
+<script src="/bower_components/bootstrap-sweetalert/lib/sweet-alert.js"></script>
 <script src="/lte/dist/js/app.min.js"></script>
 <script src="/lte/dist/js/demo.js"></script>
+
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the

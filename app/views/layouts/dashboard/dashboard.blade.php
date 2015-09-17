@@ -89,5 +89,6 @@
     <div class="control-sidebar-bg"></div>
 </div>
 @include('layouts.dashboard.js')
+@yield('user-scripts')
 </body>
 </html>
