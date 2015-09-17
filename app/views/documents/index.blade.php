@@ -71,7 +71,7 @@
     @if ($documents->count())
         <script>
             $('.switalert1').on('click', function(){
-                swal({   title: "Удаление ОС",   text: "Вы уверены что хотите удалить документ",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
+                swal({   title: "Удаление Документа",   text: "Вы уверены что хотите удалить документ",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
                     if (isConfirm) {
                         return window.location.href='{{action('DocumentsController@getDelete',array($document->id))}}'
                     }
