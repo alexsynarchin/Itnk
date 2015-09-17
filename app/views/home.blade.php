@@ -64,7 +64,7 @@
             <h3 class="box-title"><i class="fa fa-file-text-o"></i> Основные средства</h3>
         </div><!-- /.box-header -->
         <div class="box-body ">
-            <table class="list table table-bordered table-striped">
+            <table class="list table table-bordered table-striped table-hover">
                 <tr>
                     <th>Наименование</th>
                     <th>Инвентарный номер</th>
