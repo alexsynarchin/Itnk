@@ -81,7 +81,7 @@
                         <td>{{{$item->number}}}</td>
                         <td>{{{$item->okof}}}</td>
                         <td>{{{$item->carrying_amount}}}</td>
-                        <td></td>
+                        <td>{{{$item->variable->residual_value}}}</td>
                         <td></td>
                         <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a  class="action switalert"><i class="fa fa-trash"></i></a></td>
                     </tr>

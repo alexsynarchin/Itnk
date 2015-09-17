@@ -140,6 +140,7 @@ public function postAdd($id){
 				$address->delete();
 				$building->delete();
 				$item->delete();
+				return Redirect::route($this);
 				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 				break;
 			case 'parcels':
