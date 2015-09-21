@@ -38,7 +38,7 @@
                                     <td>{{{$item->carrying_amount}}}</td>
                                     <td>{{{$item->variable->residual_value}}}</td>
                                     <td></td>
-                                    <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a></td>
+                                    <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a></td>
                                 </tr>
                             @endforeach
                         </table>

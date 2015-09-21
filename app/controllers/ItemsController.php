@@ -122,7 +122,6 @@ public function postAdd($id){
 		}
 	}
 	public function getDelete($id){
-		$name = Route::currentRouteName();
 		$item=Item::find($id);
 		$document=Item::find($id)->document();
 		$type=$item->document->os_type;
@@ -131,8 +130,7 @@ public function postAdd($id){
 				$variable=Item::find($id)->variable();
 				$variable->delete();
 				$item->delete();
-				return Redirect::route(Route::currentRouteName());
-				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
 			case 'buildings':
 				$variable=Item::find($id)->variable();
@@ -142,17 +140,112 @@ public function postAdd($id){
 				$address->delete();
 				$building->delete();
 				$item->delete();
-				return Redirect::route(Route::currentRouteName());
-				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 				break;
 			case 'parcels':
-				$parcel=Item::find($id)->parcel;
+				$parcel=Item::find($id)->parcel();
 				$address=Address::find($id)->address();
 				$address->delete();
 				$parcel->delete();
-				return Redirect::route(Route::currentRouteName());
-				//return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
+		}
+
+	}
+	public function getEdit($id){
+		$item=Item::find($id);
+		$document=Item::find($id)->document();
+		$type=$item->document->os_type;
+		switch($type){
+			case 'movables'||'value_movables':
+				$variable=Item::find($id)->variable();
+				return View::make('items.edit', array('item' => $item,'document'=>$document, 'variable'=>$variable));
+			break;
+			case 'buildings':
+				$variable=Item::find($id)->variable();
+				$building=Item::find($id)->building();
+				$address=Address::find($id)->address();
+				return View::make('items.edit', array('item' => $item,'document'=>$document, 'building'=>$building,'variable'=>$variable,'address'=>$address));
+			break;
+			case 'parcels':
+				$parcel=Item::find($id)->parcel;
+				$address=Address::find($id)->address();
+				return View::make('items.edit', array('item' => $item,'document'=>$document, 'parcel'=>$parcel,'address'=>$address));
+			break;
+		}
+
+	}
+	public function postUpdate($id){
+		$item=Item::find($id);
+		$document=Item::find($id)->document();
+		$type=$item->document->os_type;
+		if(($type=='movables')||($type=='value_movables')){
+			$item -> name=Input::get('name');
+			$item -> number=Input::get('number');
+			$item -> os_view=Input::get('os_view');
+			$item -> okof=Input::get('okof');
+			$item->carrying_amount=Input::get('carrying_amount');
+			$item->financing_source=Input::get('financing_source');
+			$item->additional_field=Input::get('additional_field');
+			$item->save();
+			$variable=Item::find($id)->variable();
+			$variable -> residual_value = Input::get('residual_value');
+			$variable -> monthly_rate = Input::get('monthly_rate');
+			$variable -> useful_life = Input::get('useful_life');
+			$item->variable->save();
+			return Redirect::action('DocumentsController@getView',[$item->document_id]);
+		}
+		if($type=='buildings'){
+			$variable=Item::find($id)->variable();
+			$building=Item::find($id)->building();
+			$address=Item::find($id)->address();
+			$item -> name=Input::get('name');
+			$item -> number=Input::get('number');
+			$item -> os_view=Input::get('os_view');
+			$item -> okof=Input::get('okof');
+			$item->carrying_amount=Input::get('carrying_amount');
+			$item->financing_source=Input::get('financing_source');
+			$item->additional_field=Input::get('additional_field');
+			$item->save();
+			$variable -> residual_value = Input::get('residual_value');
+			$variable -> monthly_rate = Input::get('monthly_rate');
+			$variable -> useful_life = Input::get('useful_life');
+			$item->variable->save();
+			$building->appointment=Input::get('appointment');
+			$building->wall_material=Input::get('wall_material');
+			$building->date_construction=Input::get('date_construction');
+			$building->floors=Input::get('floors');
+			$item->building->save();
+			$address->state=Input::get('state');
+			$address->district=Input::get('district');
+			$address->city=Input::get('city');
+			$address->street=Input::get('street');
+			$address->building_number=Input::get('building_number');
+			$address->building_number_2=Input::get('building_number_2');
+			$item->address->save();
+			return Redirect::action('DocumentsController@getView',[$item->document_id]);
+		}
+		if($type=='parcels'){
+			$parcel=Item::find($id)->parcel();
+			$address=Item::find($id)->address();
+			$item -> name=Input::get('name');
+			$item -> number=Input::get('number');
+			$item->carrying_amount=Input::get('carrying_amount');
+			$item->financing_source=Input::get('financing_source');
+			$item->additional_field=Input::get('additional_field');
+			$item->save();
+			$parcel->cadastral=Input::get('cadastral');
+			$parcel->assigning_land=Input::get('assigning_land');
+			$parcel->area=Input::get('area');
+			$item->parcel->save();
+			$address->state=Input::get('state');
+			$address->district=Input::get('district');
+			$address->city=Input::get('city');
+			$address->street=Input::get('street');
+			$address->building_number=Input::get('building_number');
+			$address->building_number_2=Input::get('building_number_2');
+			$item->address->save();
+			return Redirect::action('DocumentsController@getView',[$item->document_id]);
 		}
 
 	}

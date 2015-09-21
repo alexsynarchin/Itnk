@@ -42,9 +42,6 @@ class DocumentsController extends \BaseController {
 				$items = Document::find($id)->items;
 
 		}
-
-
-
 		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);
