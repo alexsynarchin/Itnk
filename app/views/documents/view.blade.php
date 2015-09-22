@@ -35,12 +35,9 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="control-bnts row">
-                    <div class="col-xs-4">
-                        @if($document->os_type==('movables'||'value_movables||buildings'))
+                    <div class="col-xs-8">
+                            <a href="{{action('ItemsController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a> <a href="{{action('DocumentsController@index', [$document->id])}}" class="add-btn btn btn-success">Сохранить документ</a>
 
-                            <a href="{{action('ItemsController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
-
-@endif
                     </div>
                 </div>
                 <table class="list table table-bordered table-striped table-hover">
