@@ -22,6 +22,7 @@ public function postAdd($id){
 	if(($type=='movables')||($type=='value_movables')){
 		$item = new Item;
 		$item -> name=Input::get('name');
+		$item -> os_date=Input::get('os_date');
 		$item -> number=Input::get('number');
 		$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
@@ -40,6 +41,7 @@ public function postAdd($id){
 	if($type=='buildings'){
 		$item = new Item;
 		$item -> name=Input::get('name');
+		$item -> os_date=Input::get('os_date');
 		$item -> number=Input::get('number');
 		$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
@@ -72,6 +74,7 @@ public function postAdd($id){
 	if($type=='parcels'){
 		$item=new Item;
 		$item -> name=Input::get('name');
+		$item -> os_date=Input::get('os_date');
 		$item -> number=Input::get('number');
 		$item->carrying_amount=Input::get('carrying_amount');
 		$item->financing_source=Input::get('financing_source');
@@ -181,6 +184,7 @@ public function postAdd($id){
 		$type=$item->document->os_type;
 		if(($type=='movables')||($type=='value_movables')){
 			$item -> name=Input::get('name');
+			$item -> os_date=Input::get('os_date');
 			$item -> number=Input::get('number');
 			$item -> os_view=Input::get('os_view');
 			$item -> okof=Input::get('okof');
@@ -200,6 +204,7 @@ public function postAdd($id){
 			$building=Item::find($id)->building();
 			$address=Item::find($id)->address();
 			$item -> name=Input::get('name');
+			$item -> os_date=Input::get('os_date');
 			$item -> number=Input::get('number');
 			$item -> os_view=Input::get('os_view');
 			$item -> okof=Input::get('okof');
@@ -229,6 +234,7 @@ public function postAdd($id){
 			$parcel=Item::find($id)->parcel();
 			$address=Item::find($id)->address();
 			$item -> name=Input::get('name');
+			$item -> os_date=Input::get('os_date');
 			$item -> number=Input::get('number');
 			$item->carrying_amount=Input::get('carrying_amount');
 			$item->financing_source=Input::get('financing_source');

@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration {
 			$table->timestamps();
 			$table->string('name');
 			$table->string('number');
+			$table->date('os_date');
 			$table->decimal('carrying_amount', 10, 2);
 			$table->enum('financing_source',array(
 				'budget',

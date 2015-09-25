@@ -31,6 +31,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="os-form-group col-xs-6">
+                        <label for="name" class="control-label">Дата принятия к уяету:</label>
+                        <div class="input-container">
+                            <input required="required" type="date" value="{{$item->os_date}}" name="os_date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="os-form-group col-md-4 col-xs-4">
                         <label for="name" class="control-label">Инвертарный номер:</label>
                         <div class="input-container">
@@ -73,9 +81,9 @@
                             </div>
                         </div>
                         <div class="os-form-group col-md-3 col-xs-3">
-                            <label for="name" class="control-label">Месячная норма:</label>
+                            <label for="name" class="control-label">Месячная норма, %:</label>
                             <div class="input-container">
-                                <input required="required" value="{{$item->variable->monthly_rate}}" type="number" name="monthly_rate" class="form-control">
+                                <input required="required" value="{{$item->variable->monthly_rate}}" type="decimal" name="monthly_rate" class="form-control">
                             </div>
                         </div>
                         <div class="os-form-group col-md-4 col-xs-4">
