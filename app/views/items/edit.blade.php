@@ -31,6 +31,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="os-form-group col-md-4 col-xs-4">
+                        <label for="name" class="control-label">Инвертарный номер:</label>
+                        <div class="input-container">
+                            <input required="required" type="text" value="{{$item->number}}" name="number" class="form-control">
+                        </div>
+                    </div>
                     <div class="os-form-group col-xs-6">
                         <label for="name" class="control-label">Дата принятия к уяету:</label>
                         <div class="input-container">
@@ -39,12 +45,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="os-form-group col-md-4 col-xs-4">
-                        <label for="name" class="control-label">Инвертарный номер:</label>
-                        <div class="input-container">
-                            <input required="required" type="text" value="{{$item->number}}" name="number" class="form-control">
-                        </div>
-                    </div>
                     @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
                         @include('items.edit.okof-edit')
                     @endif

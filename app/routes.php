@@ -28,5 +28,7 @@ Route::post('login', array('as' => 'login', 'uses' => 'UsersController@handleLog
 Route::get('/profile', array('as' => 'profile', 'uses' => 'UsersController@profile'))->before('auth');
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'));
 Route::get('documents','DocumentsController@index' )->before('auth');
+Route::get('okofs', 'OkofsController@index')->before('auth');
 Route::controller('documents', 'DocumentsController');
 Route::controller('Items', 'ItemsController');
+Route::controller('Okofs', 'OkofsController');

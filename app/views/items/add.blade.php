@@ -27,6 +27,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="os-form-group col-md-4 col-xs-4">
+                    <label for="name" class="control-label">Инвертарный номер:</label>
+                    <div class="input-container">
+                        <input required="required" type="text" name="number" class="form-control">
+                    </div>
+                </div>
                 <div class="os-form-group col-xs-6">
                     <label for="name" class="control-label">Дата принятия к уяету:</label>
                     <div class="input-container">
@@ -35,12 +41,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="os-form-group col-md-4 col-xs-4">
-                    <label for="name" class="control-label">Инвертарный номер:</label>
-                    <div class="input-container">
-                        <input required="required" type="text" name="number" class="form-control">
-                    </div>
-                </div>
                 @if(($document->os_type=='movables')||($document->os_type=='value_movables')||($document->os_type=='buildings'))
                     @include('items.okof')
                 @endif
@@ -103,6 +103,5 @@
         </div><!-- /.box-footer -->
         {{ Form::close() }}
     </div>
-
 </section>
 @stop
