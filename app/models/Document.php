@@ -4,6 +4,9 @@ class Document extends Eloquent {
     public function items(){
         return $this->hasMany('Item','document_id');
     }
+    public function user(){
+        return $this->belongsTo('User');
+    }
     public static $os_types = array(
         'movables' => 'Движимое имущество',
         'value_movables' => 'Особо ценное движимое имущество',

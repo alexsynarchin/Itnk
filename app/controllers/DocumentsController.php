@@ -10,7 +10,7 @@ class DocumentsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$documents = Document::get();
+		$documents = Auth::user() -> documents;
 		return View::make('documents.index')->with('documents', $documents);
 	}
 

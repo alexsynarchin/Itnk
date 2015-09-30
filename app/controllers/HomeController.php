@@ -17,8 +17,9 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
+		$documents = Auth::user() -> documents->get();
+		$ids=$documents->id;
 		$items=Item::get();
-		$documents = Document::get();
 		return View::make('home',array('documents'=>$documents, 'items'=>$items));
 	}
 
