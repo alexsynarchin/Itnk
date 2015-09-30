@@ -19,6 +19,7 @@ class CreateDocumentsTable extends Migration {
 			$table->date('document_date');
 			$table->date('actual_date');
 			$table->integer('user_id');
+			$table->integer('document_number')->unsigned();
 			$table->enum('os_type', array(
 				'movables',
 				'value_movables',

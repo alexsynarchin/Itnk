@@ -10,10 +10,12 @@ class OkofsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$okofs=Okof::get();
-		return View::make('okof.okof')->with('okofs', $okofs);
+		$items = Okof::tree();
+		return View::make('okof.okof')->withItems($items);
 	}
+function getCat(){
 
+}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /okofs/create

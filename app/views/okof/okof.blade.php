@@ -13,10 +13,14 @@
 
     <!-- Main content -->
     <section class="content">
-    <ul>
-        <li>
-
-        </li>
-    </ul>
+        <ul>
+            @foreach($items as $item)
+                <li>{{ $item->name }}
+                @foreach($item['children'] as $child)
+                    <li>{{ $child->name }}</li>
+                    @endforeach
+                        </li>
+                @endforeach
+        </ul>
     </section>
 @stop
