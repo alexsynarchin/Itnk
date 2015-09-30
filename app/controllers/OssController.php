@@ -12,9 +12,14 @@ class OssController extends \BaseController {
 	{
 		$documents = Auth::user() -> documents;
 		$i=0;
-		$ids=0;
-		foreach($documents as $document){
-			$ids[$i]=$document->id;
+		$num =$documents->count();
+		if($num == 0){
+			$ids=0;
+		}
+		else{
+			foreach($documents as $document){
+				$ids[$i]=$document->id;
+			}
 		}
 		$items=Item::where('document_id', $ids)->get();
 		return View::make('items.oss')->with('items',$items);

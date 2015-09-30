@@ -19,9 +19,14 @@ class HomeController extends BaseController {
 	{
 		$documents = Auth::user() -> documents;
 		$i=0;
+		$num =$documents->count();
+		if($num == 0){
 		$ids=0;
-		foreach($documents as $document){
-			$ids[$i]=$document->id;
+	}
+		else{
+			foreach($documents as $document){
+				$ids[$i]=$document->id;
+			}
 		}
 		$items=Item::where('document_id', $ids)->get();
 		return View::make('home',array('documents'=>$documents, 'items'=>$items));
