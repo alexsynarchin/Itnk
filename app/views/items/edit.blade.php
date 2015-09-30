@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="os-form-group col-xs-6">
-                        <label for="name" class="control-label">Дата принятия к уяету:</label>
+                        <label for="name" class="control-label">Дата принятия к учету:</label>
                         <div class="input-container">
                             <input required="required" type="date" value="{{$item->os_date}}" name="os_date" class="form-control">
                         </div>

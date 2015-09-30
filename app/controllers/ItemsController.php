@@ -24,7 +24,7 @@ public function postAdd($id){
 		$item -> name=Input::get('name');
 		$item -> os_date=Input::get('os_date');
 		$item -> number=Input::get('number');
-		$item -> os_view=Input::get('os_view');
+		//$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
 		$item->carrying_amount=Input::get('carrying_amount');
 		$item->financing_source=Input::get('financing_source');
@@ -43,7 +43,7 @@ public function postAdd($id){
 		$item -> name=Input::get('name');
 		$item -> os_date=Input::get('os_date');
 		$item -> number=Input::get('number');
-		$item -> os_view=Input::get('os_view');
+		//$item -> os_view=Input::get('os_view');
 		$item -> okof=Input::get('okof');
 		$item->carrying_amount=Input::get('carrying_amount');
 		$item->financing_source=Input::get('financing_source');
@@ -129,16 +129,10 @@ public function postAdd($id){
 		$document=Item::find($id)->document();
 		$type=$item->document->os_type;
 		switch($type){
-			case 'movables'||'value_movables':
-				$variable=Item::find($id)->variable();
-				$variable->delete();
-				$item->delete();
-				return Redirect::action('DocumentsController@getView', [$item->document->id]);
-			break;
 			case 'buildings':
 				$variable=Item::find($id)->variable();
 				$building=Item::find($id)->building();
-				$address=Address::find($id)->address();
+				$address=Item::find($id)->address();
 				$variable->delete();
 				$address->delete();
 				$building->delete();
@@ -147,11 +141,17 @@ public function postAdd($id){
 				break;
 			case 'parcels':
 				$parcel=Item::find($id)->parcel();
-				$address=Address::find($id)->address();
+				$address=Item::find($id)->address();
 				$address->delete();
 				$parcel->delete();
 				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
+			case 'movables'||'value_movables':
+				$variable=Item::find($id)->variable();
+				$variable->delete();
+				$item->delete();
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+				break;
 		}
 
 	}

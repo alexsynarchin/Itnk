@@ -12,7 +12,7 @@ class Item extends \Eloquent {
 		return $this->hasOne('Parcel');
 	}
 	public  function address(){
-		return $this->hasOne('Address');
+		return $this->hasOne('Address','item_id');
 	}
 	public  function variable(){
 		return $this->hasOne('Variable');

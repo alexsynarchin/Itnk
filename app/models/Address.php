@@ -5,6 +5,6 @@ class Address extends \Eloquent {
 	protected $table = 'addresses';
 	public $timestamps = false;
 	public function item(){
-		return $this->belongsTo('Item');
+		return $this->belongsTo('Item','item_id');
 	}
 }

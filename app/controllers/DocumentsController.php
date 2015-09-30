@@ -31,8 +31,61 @@ class DocumentsController extends \BaseController {
 	}
 	public function getDelete($id) {
 		$document = Document::find($id);
-		$document->delete();
-		return Redirect::to('documents');
+		$type=$document->os_type;
+		switch($type){
+			case 'movables':
+			$items=$document->items();
+			foreach($document->items as $item){
+				$variable=Item::find($item->id)->variable();
+				$variable->delete();
+			}
+				$document->items()->delete();
+				$document->delete();
+				return Redirect::to('documents');
+				break;
+			case 'value_movables':
+				  $items=$document->items();
+			foreach($document->items as $item){
+				$variable=Item::find($item->id)->variable();
+				$variable->delete();
+			}
+				$document->items()->delete();
+				$document->delete();
+				return Redirect::to('documents');
+			break;
+			case 'buildings':
+				$items=$document->items();
+				foreach($document->items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+
+				}
+				foreach($document->items as $item){
+					$building=Item::find($item->id)->building();
+					$building->delete();
+				}
+				foreach($document->items as $item){
+					$address=Item::find($item->id)->address();
+					$address->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				return Redirect::to('documents');
+				break;
+			case 'parcels':
+				$items=$document->items();
+				foreach($document->items as $item){
+					$parcel=Item::find($item->id)->parcel();
+					$address=Item::find($item->id)->address();
+					$address->delete();
+					$parcel->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				return Redirect::to('documents');
+				break;
+		}
+
 	}
 	public function getView($id){
 		$document = Document::find($id);
