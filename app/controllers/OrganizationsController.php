@@ -13,7 +13,14 @@ class OrganizationsController extends \BaseController {
 
 		return View::make('organization.organization');
 	}
-
+	public function all(){
+		$organizations=Organization::get();
+		return View::make('organization.organizations')->with('organizations', $organizations);
+	}
+	public function getView($id){
+		$organization=Organization::find($id);
+		return View::make('organization.organization_view', array('organization'=>$organization));
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /organizations/create

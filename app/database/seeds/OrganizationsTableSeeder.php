@@ -557,6 +557,28 @@ class OrganizationsTableSeeder extends Seeder {
 				'fio' => 'Ф.Х. Казакбаев',
 				'operate_foundation' => 'Устава',
 				'boss_position'=> 'Директор'
+			),
+			//26
+			array(
+				'last_document_number'=>'1',
+				'contract_number'=> '150502',
+				'inn' => '0275071849',
+				'kpp' => '',
+				'date' => '27.05.2015',
+				'short_name' => 'Министерство культуры Республики Башкортостан',
+				'full_name' => 'Министерство культуры Республики Башкортостан',
+				'legal_address' => '',
+				'fact_address' => '',
+				'rs' => '',
+				'ls' => '',
+				'ks' => '',
+				'bik' => '' ,
+				'bank' => '',
+				'phone' => '',
+				'email' => '',
+				'fio' => '',
+				'operate_foundation' => '',
+				'boss_position'=> ''
 			)
 		);
 		DB::table('organizations') -> insert($organizations);
