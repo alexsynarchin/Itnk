@@ -579,6 +579,28 @@ class OrganizationsTableSeeder extends Seeder {
 				'fio' => '',
 				'operate_foundation' => '',
 				'boss_position'=> ''
+			),
+			//27
+			array(
+				'last_document_number'=>'1',
+				'contract_number'=> '',
+				'inn' => '',
+				'kpp' => '',
+				'date' => '',
+				'short_name' => 'ИТНК',
+				'full_name' => 'ИТНК',
+				'legal_address' => '',
+				'fact_address' => '',
+				'rs' => '',
+				'ls' => '',
+				'ks' => '',
+				'bik' => '' ,
+				'bank' => '',
+				'phone' => '',
+				'email' => '',
+				'fio' => '',
+				'operate_foundation' => '',
+				'boss_position'=> ''
 			)
 		);
 		DB::table('organizations') -> insert($organizations);

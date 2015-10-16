@@ -216,6 +216,14 @@ class UsersTableSeeder extends Seeder {
 				'username' => '1-0275071849',
 				'password' => Hash::make('k387edm4'),
 				'organization_id' => '26'
+			),
+			array(
+				'first_name' => 'Максим',
+				'last_name' => 'Красноперов',
+				'surname' => '',
+				'username' => 'admin',
+				'password' => Hash::make('f8463edg7'),
+				'organization_id' => '27'
 			)
 		);
 		DB::table('users') -> insert($users);

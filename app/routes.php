@@ -34,3 +34,9 @@ Route::controller('org','OrganizationsController');
 Route::controller('documents', 'DocumentsController');
 Route::controller('Items', 'ItemsController');
 Route::controller('Okofs', 'OkofsController');
+Route::get('/admin', [
+    'as' => 'admin',
+    'uses' => 'AdminController@index'
+])->before('auth');
+Route::controller('admin', 'AdminController');
+Route::controller('organization', 'OrganizationsController');

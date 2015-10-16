@@ -1,24 +1,31 @@
 <?php
 
-class OrganizationsController extends \BaseController {
+class AdminController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /organizations
 	 *
 	 * @return Response
 	 */
-	protected $fillable =['*'];
 	public function index()
 	{
-
-		return View::make('organization.organization');
+		$organizations=Organization::get();
+		return View::make('admin')->with('organizations', $organizations);
+	}
+	public function getOrgView($id){
+		$organization=Organization::find($id);
+		return View::make('admin_organization', array('organization'=>$organization));
 	}
 	public function getAdd(){
 		return View::make('organization.add');
 	}
-	public function  postAdd(){
-		$organization = new Organization;
+	public  function getEdit($id){
+		$organization = Organization::find($id);
+		$user=Organization::find($id)->user();
+		return View::make('organization.edit', array('organization' => $organization, 'user' => $user));
+	}
+	public function postOrgUpdate($id){
+		$organization=Organization::find($id);
 		$organization -> full_name = Input::get('full_name');
 		$organization -> short_name = Input::get('short_name');
 		$organization -> inn = Input::get('inn');
@@ -37,9 +44,8 @@ class OrganizationsController extends \BaseController {
 		$organization -> bik = Input::get('bik');
 		$organization -> phone = Input::get('phone');
 		$organization -> email = Input::get('email');
-		$organization -> last_document_number = 1;
 		$organization->save();
-		$user = new User;
+		$user=Organization::find($id)->user();
 		$user ->first_name = Input::get('first_name');
 		$user ->last_name = Input::get('last_name');
 		$user ->surname = Input::get('surname');
@@ -48,17 +54,8 @@ class OrganizationsController extends \BaseController {
 		$organization->user()->save($user);
 		return Redirect::action('AdminController@index');
 	}
-	public function all(){
-		$organizations=Organization::get();
-		return View::make('organization.organizations')->with('organizations', $organizations);
-	}
-	public function getView($id){
-		$organization=Organization::find($id);
-		return View::make('organization.organization_view', array('organization'=>$organization));
-	}
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /organizations/create
 	 *
 	 * @return Response
 	 */
@@ -67,9 +64,9 @@ class OrganizationsController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /organizations
 	 *
 	 * @return Response
 	 */
@@ -78,9 +75,9 @@ class OrganizationsController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Display the specified resource.
-	 * GET /organizations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -90,9 +87,9 @@ class OrganizationsController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /organizations/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -102,9 +99,9 @@ class OrganizationsController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /organizations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -114,9 +111,9 @@ class OrganizationsController extends \BaseController {
 		//
 	}
 
+
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /organizations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -125,5 +122,6 @@ class OrganizationsController extends \BaseController {
 	{
 		//
 	}
+
 
 }
