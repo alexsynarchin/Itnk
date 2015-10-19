@@ -5,10 +5,6 @@
            Организация - {{Auth::user() -> organization -> short_name}}
             <small>Система ИТНК-ОБЗОР</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/home"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li class="active">Организация</li>
-        </ol>
     </section>
 
     <!-- Main content -->

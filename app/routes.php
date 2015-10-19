@@ -30,13 +30,17 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'
 Route::get('documents','DocumentsController@index' )->before('auth');
 Route::get('okofs', 'OkofsController@index')->before('auth');
 Route::get('organizations','OrganizationsController@all')->before('auth');
-Route::controller('org','OrganizationsController');
-Route::controller('documents', 'DocumentsController');
-Route::controller('Items', 'ItemsController');
-Route::controller('Okofs', 'OkofsController');
 Route::get('/admin', [
     'as' => 'admin',
     'uses' => 'AdminController@index'
 ])->before('auth');
-Route::controller('admin', 'AdminController');
-Route::controller('organization', 'OrganizationsController');
+
+Route::group(array('before' => 'auth'), function() {
+    Route::controller('org','OrganizationsController');
+    Route::controller('documents', 'DocumentsController');
+    Route::controller('Items', 'ItemsController');
+    Route::controller('Okofs', 'OkofsController');
+    Route::controller('admin', 'AdminController');
+    Route::controller('organization', 'OrganizationsController');
+    Route::controller('oss', 'OssController');
+});

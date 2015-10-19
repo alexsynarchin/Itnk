@@ -5,16 +5,13 @@
             Организация - {{$organization -> short_name}}
             <small>Система ИТНК-ОБЗОР</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/home"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li class="active">Организация</li>
-        </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="control-bnts row">
-            <div class=" right col-xs-2 col-xs-offset-10">
+            <div class=" right col-xs-6 col-xs-offset-6">
+                <a href="{{action('OssController@getOrgDocs', [$organization-> id])}}" class="big add-btn btn btn-primary">Документы организации</a>
                 <a href="\organizations" class="big add-btn btn btn-danger">Закрыть</a>
             </div>
         </div>

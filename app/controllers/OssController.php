@@ -24,6 +24,24 @@ class OssController extends \BaseController {
 		$items=Item::where('document_id', $ids)->get();
 		return View::make('items.oss')->with('items',$items);
 	}
+	public function getOrgDocs($id){
+		$organization=Organization::find($id);
+		$user =  Organization::find($id)-> user();
+		$documents = User::find($organization->user->id)->documents;
+		return View::make('inspector.documents_view', ['organization'=>$organization, 'user'=>$user, 'documents'=>$documents]);
+	}
+	public function getDocView($id){
+		$document = Document::find($id);
+		$user=Document::find($id)->user();
+		$organization=User::find($document->user->organization_id)->organization;
+		$type=$document->os_type;
+				$items = Document::find($id)->items;
+		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
+		if (!$document) {
+			App::abort(404);
+		}
+		return View::make('inspector.document_view', array( 'items' =>$items, 'document' => $document, 'organization'=>$organization ));
+	}
 
 	/**
 	 * Show the form for creating a new resource.

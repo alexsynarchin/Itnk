@@ -25,10 +25,10 @@
             <li class="{{ Request::is( 'oss') ? 'active' : '' }}"><a href="/oss"><i class="fa fa-database"></i> <span>Основные средства</span></a></li>
             <li class="{{ Request::is( 'organization') ? 'active' : '' }}"><a href="/organization"><i class="fa fa-building"></i> <span>Организация</span></a></li>
             @if(Auth::user() -> username == '1-0275071849')
-                <li class="{{ Request::is( 'organizations') ? 'active' : '' }}"><a href="organizations"><i class="fa fa-eye"></i> <span>Инспектор</span></a></li>
+                <li class="{{ Request::is( 'organizations') ? 'active' : '' }}"><a href="/organizations"><i class="fa fa-eye"></i> <span>Инспектор</span></a></li>
             @endif
             @if(Auth::user() -> username == 'admin')
-                <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a href="admin"><i class="fa fa-pencil-square-o"></i></i> <span>Администрирование</span></a></li>
+                <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a href="/admin"><i class="fa fa-pencil-square-o"></i></i> <span>Администрирование</span></a></li>
             @endif
             <li class="{{ Request::is( 'profile') ? 'active' : '' }}"><a href="/profile"><i class="fa fa-user"></i> <span>Профиль</span></a></li>
             <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>

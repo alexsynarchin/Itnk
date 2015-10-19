@@ -17,7 +17,11 @@
                     <div class="btns ">
                         <!-- Buttons, labels, and many other things can be placed here! -->
                         <!-- Here is a label for example -->
+                        @if(Auth::user() -> username == '1-0275071849')
+                            <a href="{{action('OssController@getDocView',array($item->document->id))}}" class="btn btn-danger">Закрыть</a>
+                        @else
                         <a href="{{action('DocumentsController@getView',array($item->document->id))}}" class="btn btn-danger">Закрыть</a>
+                        @endif
                     </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">

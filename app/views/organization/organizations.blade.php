@@ -5,10 +5,6 @@
             Инспектор
             <small>Система ИТНК-ОБЗОР</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/home"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li class="active">Инспектор</li>
-        </ol>
     </section>
 
     <!-- Main content -->
@@ -27,11 +23,14 @@
                                 <th>Действия</th>
                             </tr>
                             @foreach ($organizations as $organization)
+                                @if(($organization->id==1)||(($organization->id==27)))
+                                @else
                                 <tr>
                                     <td>{{{$organization->short_name}}}</td>
                                     <td>{{{$organization->inn}}}</td>
                                     <td class="actions icons"><a href="{{action('OrganizationsController@getView',array($organization->id))}}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
+                                @endif
                             @endforeach
                         </table>
                     </div><!-- /.box-body -->
