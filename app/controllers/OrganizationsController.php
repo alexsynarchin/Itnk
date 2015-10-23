@@ -44,7 +44,7 @@ class OrganizationsController extends \BaseController {
 		$user ->last_name = Input::get('last_name');
 		$user ->surname = Input::get('surname');
 		$user ->username = Input::get('username');
-		$user ->password = Hash::make(Input::get('password'));
+		$user ->password = Input::get('password');
 		$organization->user()->save($user);
 		return Redirect::action('AdminController@index');
 	}

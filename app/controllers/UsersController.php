@@ -33,6 +33,7 @@ class UsersController extends \BaseController {
 		}
 		return Redirect::route('login');
 	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /users/create

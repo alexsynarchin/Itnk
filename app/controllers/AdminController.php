@@ -46,12 +46,12 @@ class AdminController extends \BaseController {
 		$organization -> email = Input::get('email');
 		$organization->save();
 		$user=Organization::find($id)->user();
-		$user ->first_name = Input::get('first_name');
-		$user ->last_name = Input::get('last_name');
-		$user ->surname = Input::get('surname');
-		$user ->username = Input::get('username');
-		$user ->password = Hash::make(Input::get('password'));
-		$organization->user->save();
+		$organization->user -> username = Input::get('username');
+		$organization->user -> password = Input::get('password');
+		$organization->user -> first_name = Input::get('first_name');
+		$organization->user -> last_name = Input::get('last_name');
+		$organization->user -> surname = Input::get('surname');
+		$organization -> user->save();
 		return Redirect::action('AdminController@index');
 	}
 	/**
