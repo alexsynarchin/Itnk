@@ -51,7 +51,7 @@ class AdminController extends \BaseController {
 		$user ->surname = Input::get('surname');
 		$user ->username = Input::get('username');
 		$user ->password = Hash::make(Input::get('password'));
-		$organization->user()->save($user);
+		$organization->user->save();
 		return Redirect::action('AdminController@index');
 	}
 	/**
