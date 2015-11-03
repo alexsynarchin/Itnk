@@ -89,12 +89,7 @@ class DocumentsController extends \BaseController {
 	}
 	public function getView($id){
 		$document = Document::find($id);
-		$type=$document->os_type;
-		switch($type){
-			case 'movables'||'value_movables':
-				$items = Document::find($id)->items;
-
-		}
+		$items = Document::find($id)->items;
 		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);

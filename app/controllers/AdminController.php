@@ -54,6 +54,50 @@ class AdminController extends \BaseController {
 		$organization -> user->save();
 		return Redirect::action('AdminController@index');
 	}
+	public function getOrgDocs($id){
+		$organization=Organization::find($id);
+		$user=Organization::find($id)->user();
+		$documents=User::find($organization->user->id)->documents;
+		return View::make('admin.OrgDocs',['user' =>$user, 'organization' =>$organization, 'documents' =>$documents]);
+	}
+	public function getDocAdd($id){
+		$user_id=$id;
+		return View::make('admin.AddDoc', ['user_id'=> $user_id] );
+	}
+	public function postDocAdd($id){
+		$document = Document::create(Input::all());
+		$document->user_id = $id;
+		$document->save();
+		return Redirect::action('AdminController@getDocView', [$document->id]);
+	}
+	public function getDocView($id){
+		$document = Document::find($id);
+		$user =Document::find($id)->user();
+		$organization_id = $document->user->organization_id;
+		$organization=Organization::find($organization_id);
+		$items = Document::find($id)->items;
+		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
+		if (!$document) {
+			App::abort(404);
+		}
+		return View::make('admin.DocView', array( 'items' =>$items, 'document' => $document, 'organization' =>$organization ));
+	}
+	public function getDocEdit($id){
+		$document = Document::find($id);
+		// show the edit form and pass the nerd
+		return View::make('admin.EditDoc', array('document' => $document));
+	}
+	public function postDocUpdate($id){
+		$document=Document::find($id);
+		$document->document_date = Input::get('document_date');
+		$document->actual_date = Input::get('actual_date');
+		$document->save();
+
+		return Redirect::action('AdminController@getDocView', [$document->id]);
+	}
+	public function postImportItems($id){
+
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

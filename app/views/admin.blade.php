@@ -24,18 +24,22 @@
                     </div>
                 </div>
                 <table class="list table table-bordered table-striped table-hover">
-                    <tr>
-                        <th>Название</th>
-                        <th>ИНН</th>
-                        <th>Действия</th>
-                    </tr>
-                    @foreach ($organizations as $organization)
+                    <thead>
                         <tr>
-                            <td>{{{$organization->short_name}}}</td>
-                            <td>{{{$organization->inn}}}</td>
-                            <td class="actions icons"><a href="{{action('AdminController@getOrgView',array($organization->id))}}"><i class="fa fa-eye"></i></a>  <a href="{{action('AdminController@getEdit',array($organization->id))}}"><i class="fa fa-pencil-square-o"></i> </a></td>
+                            <th>Название</th>
+                            <th>ИНН</th>
+                            <th>Действия</th>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
+                        @foreach ($organizations as $organization)
+                            <tr>
+                                <td>{{{$organization->short_name}}}</td>
+                                <td>{{{$organization->inn}}}</td>
+                                <td class="actions icons"><a href="{{action('AdminController@getOrgView',array($organization->id))}}"><i class="fa fa-eye"></i></a>  <a href="{{action('AdminController@getEdit',array($organization->id))}}"><i class="fa fa-pencil-square-o"></i> </a> <a href="{{action('AdminController@getOrgDocs',array($organization->id))}}"><i class="fa fa-file-text-o"></i></a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div><!-- /.box-body -->
             <div class="box-footer clearfix">
