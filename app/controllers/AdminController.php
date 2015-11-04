@@ -66,6 +66,11 @@ class AdminController extends \BaseController {
 	}
 	public function postDocAdd($id){
 		$document = Document::create(Input::all());
+		$user=User::find($id);
+		$organization=User::find($id)->organization();
+		$user->organization->last_document_number++;
+		$user->organization->save();
+		$document->document_number=$user->organization->last_document_number;
 		$document->user_id = $id;
 		$document->save();
 		return Redirect::action('AdminController@getDocView', [$document->id]);
@@ -95,8 +100,172 @@ class AdminController extends \BaseController {
 
 		return Redirect::action('AdminController@getDocView', [$document->id]);
 	}
-	public function postImportItems($id){
+	public function postImport($id){
+		$document = Document::find($id);
+		$type=$document->os_type;
+		if(Input::hasFile('file')){
+			$file=Input::file('file');
+			$filename = $file->getClientOriginalName();
+			$destinationPath = public_path().'/uploads/';
+			Input::file('file')->move($destinationPath, $filename);
+			$handle=fopen(public_path().'/uploads/'.$filename, "r");
+			if ($handle !== FALSE)
+			{
+				if(($type=='movables')||($type=='value_movables')){
+					while (($data = fgetcsv($handle, 1000, ';')) !==FALSE)
+					{
+						$item = new Item();
+						$name = iconv("Windows-1251", "utf-8", $data[0]);
+						$item->name = $name;
+						$item->number=$data[1];
+						$os_date = date("Y-m-d", strtotime($data[2]));
+						$item -> os_date=$os_date;
+						$okof=$data[5];
+						$okof = str_replace(" ","",$okof);
+						$item -> okof=$okof;
+						$carrying_amount=$data[6];
+						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$item->carrying_amount=$carrying_amount;
+						$item->financing_source=1;
+						$item -> document_id = $id;
+						$item->save();
+						$variable = new Variable;
+						$residual_value=$data[8];
+						$residual_value=str_replace(",",".",$residual_value);
+						$variable -> residual_value = $residual_value;
+						$monthly_rate=$data[10];
+						$monthly_rate=str_replace(",",".",$monthly_rate);
+						$variable -> monthly_rate = $monthly_rate;
+						$variable -> useful_life = $data[11];
+						$item->variable()->save($variable);
+					}
+				}
+				if($type=='buildings'){
+					while (($data = fgetcsv($handle, 1000, ';')) !==FALSE){
+						$item = new Item();
+						$name = iconv("Windows-1251", "utf-8", $data[0]);
+						$item->name = $name;
+						$item->number=$data[1];
+						$os_date = date("Y-m-d", strtotime($data[2]));
+						$item -> os_date=$os_date;
+						$okof=$data[5];
+						$okof = str_replace(" ","",$okof);
+						$item -> okof=$okof;
+						$carrying_amount=$data[6];
+						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$item->carrying_amount=$carrying_amount;
+						$item->financing_source=1;
+						$item -> document_id = $id;
+						$item->save();
+						$variable = new Variable;
+						$residual_value=$data[8];
+						$residual_value=str_replace(",",".",$residual_value);
+						$variable -> residual_value = $residual_value;
+						$monthly_rate=$data[10];
+						$monthly_rate=str_replace(",",".",$monthly_rate);
+						$variable -> monthly_rate = $monthly_rate;
+						$variable -> useful_life = $data[11];
+						$item->variable()->save($variable);
+						$building=new Building;
+						$appointment=iconv("Windows-1251", "utf-8", $data[12]);
+						$building->appointment=$appointment;
+						$wall_material=iconv("Windows-1251", "utf-8", $data[13]);
+						$building->wall_material=$wall_material;
+						$date_construction = date("Y-m-d", strtotime($data[14]));
+						$building->date_construction=$date_construction;
+						$building->floors=$data[15];
+						$item->building()->save($building);
+						$address=new Address;
+						$state=iconv("Windows-1251", "utf-8", $data[16]);
+						$address->state=$state;
+						$item->address()->save($address);
+					}
+				}
+				if($type=='parcels'){
+					while (($data = fgetcsv($handle, 1000, ';')) !==FALSE){
+						$item = new Item();
+						$name = iconv("Windows-1251", "utf-8", $data[0]);
+						$item->name = $name;
+						$item->number=$data[1];
+						$os_date = date("Y-m-d", strtotime($data[2]));
+						$item -> os_date=$os_date;
+						$carrying_amount=$data[3];
+						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$item->carrying_amount=$carrying_amount;
+						$item->financing_source=1;
+						$item -> document_id = $id;
+						$item->save();
+						$parcel=new Parcel;
+						$parcel->cadastral=$data[5];
+						$assigning_land=iconv("Windows-1251", "utf-8", $data[6]);
+						$parcel->assigning_land=$assigning_land;
+						$parcel->area=$data[7];
+						$item->parcel()->save($parcel);
+						$address=new Address;
+						$state=iconv("Windows-1251", "utf-8", $data[8]);
+						$address->state=$state;
+						$state=iconv("Windows-1251", "utf-8", $data[8]);
+						$item->address()->save($address);
+					}
+				}
 
+				fclose($handle);
+			}
+		}
+		return Redirect::action('AdminController@getDocView', [$document->id]);
+	}
+	public function getDocDelete($id){
+		$document = Document::find($id);
+		$user = Document::find($id)->user();
+		$organization_id = $document->user->organization_id;
+		$items=Document::find($id)->items;
+		$type=$document->os_type;
+		switch($type){
+			case 'movables':
+				foreach($items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				break;
+			case 'value_movables':
+				foreach($document->items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				break;
+			case 'buildings':
+				foreach($document->items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+
+				}
+				foreach($document->items as $item){
+					$building=Item::find($item->id)->building();
+					$building->delete();
+				}
+				foreach($document->items as $item){
+					$address=Item::find($item->id)->address();
+					$address->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				break;
+			case 'parcels':
+				foreach($document->items as $item){
+					$parcel=Item::find($item->id)->parcel();
+					$address=Item::find($item->id)->address();
+					$address->delete();
+					$parcel->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				break;
+		}
+		return Redirect::action('AdminController@getOrgDocs', [$organization_id]);
 	}
 	/**
 	 * Show the form for creating a new resource.

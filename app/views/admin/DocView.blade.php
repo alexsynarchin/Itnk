@@ -16,7 +16,7 @@
             <div class="box-header with-border">
                 <div class="form-group">
                     <div class="os-form-group col-xs-1">
-                        <label class="control-label">№: {{$document->id}}</label>
+                        <label class="control-label">№: {{$document->document_number}}</label>
                     </div>
                     <div class="os-form-group col-xs-3">
                         <label class="control-label">Дата документа:</label><span class="date">{{$document->document_date}}</span>
@@ -36,11 +36,11 @@
             <div class="box-body">
                 <div class="control-bnts row">
                     <div class="col-xs-8">
-                        <form action="" method="post" class="form-inline col-xs-5">
+                        <form action="{{action('AdminController@postImport',[$document->id])}}" method="post" class="form-inline col-xs-5" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="file" name="file">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Импортировать">
+                            <button type="submit" class="btn btn-primary">Импортировать</button>
                         </form>
                          <a href="{{action('AdminController@getOrgDocs',[$organization->id])}}" class="add-btn btn btn-success">Сохранить документ</a>
 

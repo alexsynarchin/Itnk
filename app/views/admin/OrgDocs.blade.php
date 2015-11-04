@@ -63,4 +63,15 @@
     </section><!-- /.content -->
 @stop
 @section('user-scripts')
+    @if ($documents->count())
+        <script>
+            $('.switalert1').on('click', function(){
+                swal({   title: "Удаление Документа",   text: "Вы уверены что хотите удалить документ",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
+                    if (isConfirm) {
+                        return window.location.href='{{action('AdminController@getDocDelete',array($document->id))}}'
+                    }
+                });
+            })
+        </script>
+    @endif
 @stop

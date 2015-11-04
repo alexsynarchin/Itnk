@@ -26,15 +26,20 @@ class DocumentsController extends \BaseController {
 	public function  postAdd(){
 		$document = Document::create(Input::all());
 		$document->user_id = Auth::user()->id;
+		$user=User::find($document->user_id);
+		$organization=User::find($document->user_id)->organization();
+		$user->organization->last_document_number++;
+		$user->organization->save();
+		$document->document_number=$user->organization->last_document_number;
 		$document->save();
 		return Redirect::action('DocumentsController@getView', [$document->id]);
 	}
 	public function getDelete($id) {
 		$document = Document::find($id);
 		$type=$document->os_type;
+		$items=Document::find($id)->items;
 		switch($type){
 			case 'movables':
-			$items=$document->items();
 			foreach($document->items as $item){
 				$variable=Item::find($item->id)->variable();
 				$variable->delete();
@@ -44,7 +49,6 @@ class DocumentsController extends \BaseController {
 				return Redirect::to('documents');
 				break;
 			case 'value_movables':
-				  $items=$document->items();
 			foreach($document->items as $item){
 				$variable=Item::find($item->id)->variable();
 				$variable->delete();
@@ -54,7 +58,6 @@ class DocumentsController extends \BaseController {
 				return Redirect::to('documents');
 			break;
 			case 'buildings':
-				$items=$document->items();
 				foreach($document->items as $item){
 					$variable=Item::find($item->id)->variable();
 					$variable->delete();
@@ -73,7 +76,6 @@ class DocumentsController extends \BaseController {
 				return Redirect::to('documents');
 				break;
 			case 'parcels':
-				$items=$document->items();
 				foreach($document->items as $item){
 					$parcel=Item::find($item->id)->parcel();
 					$address=Item::find($item->id)->address();
@@ -85,6 +87,7 @@ class DocumentsController extends \BaseController {
 				return Redirect::to('documents');
 				break;
 		}
+
 
 	}
 	public function getView($id){

@@ -11,7 +11,6 @@
         </ol>
     </section>
     <section class="content">
-        <h1>{{$user_id}}</h1>
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Документ первичного ввода</h3>

@@ -34,7 +34,21 @@ Route::get('/admin', [
     'as' => 'admin',
     'uses' => 'AdminController@index'
 ])->before('auth');
+Route::get('test', function()
+{
+    if (($handle = fopen('file.csv','r')) !== FALSE)
+    {
+        while (($data = fgetcsv($handle, 1000, ',')) !==FALSE)
+        {
+            $item = new Item();
+            $item->name = $data[0];
+            $item->save();
+        }
+        fclose($handle);
+    }
 
+    return item::all();
+});
 Route::group(array('before' => 'auth'), function() {
     Route::controller('org','OrganizationsController');
     Route::controller('documents', 'DocumentsController');
