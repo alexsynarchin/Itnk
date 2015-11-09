@@ -68,7 +68,7 @@
                                 @endif
                             </td>
                             <td></td>
-                            <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a><a  class="action switalert"><i class="fa fa-trash"></i></a></td>
+                            <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     @endforeach
 
@@ -83,15 +83,5 @@
     </section>
 @stop
 @section('user-scripts')
-    @if ($items->count())
-        <script>
-            $('.switalert').on('click', function(){
-                swal({   title: "Удаление ОС",   text: "Вы уверены что хотите удалить основное средство",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
-                    if (isConfirm) {
-                        return window.location.href='{{action('ItemsController@getDelete',array($item->id))}}'
-                    }
-                });
-            })
-        </script>
-    @endif
+
 @stop

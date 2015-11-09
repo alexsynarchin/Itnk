@@ -43,7 +43,7 @@
                                 <td class="actions icons">
                                     <a href="{{action('AdminController@getDocView', [$document->id])}}"><i class="fa fa-eye"></i></a>
                                     <a href="{{action('AdminController@getDocEdit',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
-                                    <a  class="action switalert1"><i class="fa fa-trash"></i></a>
+                                    <a  href="{{action('AdminController@getDocDelete',array($document->id))}}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,15 +63,5 @@
     </section><!-- /.content -->
 @stop
 @section('user-scripts')
-    @if ($documents->count())
-        <script>
-            $('.switalert1').on('click', function(){
-                swal({   title: "Удаление Документа",   text: "Вы уверены что хотите удалить документ",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",cancelButtonText:"Отмена",   confirmButtonText: "Да, удалить!",   closeOnConfirm: false },function(isConfirm) {
-                    if (isConfirm) {
-                        return window.location.href='{{action('AdminController@getDocDelete',array($document->id))}}'
-                    }
-                });
-            })
-        </script>
-    @endif
+    
 @stop
