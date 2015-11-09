@@ -63,5 +63,5 @@
     </section><!-- /.content -->
 @stop
 @section('user-scripts')
-    
+
 @stop
