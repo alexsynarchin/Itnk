@@ -125,6 +125,7 @@ class AdminController extends \BaseController {
 						$item -> okof=$okof;
 						$carrying_amount=$data[6];
 						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$carrying_amount=str_replace(" ","",$carrying_amount);
 						$item->carrying_amount=$carrying_amount;
 						$item->financing_source=1;
 						$item -> document_id = $id;
@@ -132,6 +133,7 @@ class AdminController extends \BaseController {
 						$variable = new Variable;
 						$residual_value=$data[8];
 						$residual_value=str_replace(",",".",$residual_value);
+						$residual_value=str_replace(" ","",$residual_value);
 						$variable -> residual_value = $residual_value;
 						$monthly_rate=$data[10];
 						$monthly_rate=str_replace(",",".",$monthly_rate);
@@ -153,6 +155,7 @@ class AdminController extends \BaseController {
 						$item -> okof=$okof;
 						$carrying_amount=$data[6];
 						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$carrying_amount=str_replace(" ","",$carrying_amount);
 						$item->carrying_amount=$carrying_amount;
 						$item->financing_source=1;
 						$item -> document_id = $id;
@@ -160,9 +163,11 @@ class AdminController extends \BaseController {
 						$variable = new Variable;
 						$residual_value=$data[8];
 						$residual_value=str_replace(",",".",$residual_value);
+						$residual_value=str_replace(" ","",$residual_value);
 						$variable -> residual_value = $residual_value;
 						$monthly_rate=$data[10];
 						$monthly_rate=str_replace(",",".",$monthly_rate);
+						$monthly_rate=str_replace(" ","",$monthly_rate);
 						$variable -> monthly_rate = $monthly_rate;
 						$variable -> useful_life = $data[11];
 						$item->variable()->save($variable);
@@ -191,6 +196,7 @@ class AdminController extends \BaseController {
 						$item -> os_date=$os_date;
 						$carrying_amount=$data[3];
 						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$carrying_amount=str_replace(" ","",$carrying_amount);
 						$item->carrying_amount=$carrying_amount;
 						$item->financing_source=1;
 						$item -> document_id = $id;

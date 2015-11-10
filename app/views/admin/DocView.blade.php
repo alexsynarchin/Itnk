@@ -42,7 +42,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Импортировать</button>
                         </form>
-                         <a href="{{action('AdminController@getOrgDocs',[$organization->id])}}" class="add-btn btn btn-success">Сохранить документ</a>
+                         <a href="{{action('AdminController@getOrgDocs',[$document->user->organization_id])}}" class="add-btn btn btn-success">Сохранить документ</a>
 
                     </div>
                 </div>
