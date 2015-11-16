@@ -76,11 +76,31 @@
                 </tr>
                 @foreach ($items as $item)
                     <tr>
-                        <td>{{{$item->name}}}</td>
-                        <td>{{{$item->number}}}</td>
-                        <td>{{{$item->okof}}}</td>
-                        <td>{{{$item->carrying_amount}}}</td>
-                        <td>{{{$item->variable->residual_value}}}</td>
+                        <td>
+                            @if($item->name)
+                                {{{$item->name}}}
+                                @endif
+                            </td>
+                        <td>
+                            @if($item->number)
+                            {{{$item->number}}}
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->okof)
+                            {{{$item->okof}}}
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->carrying_amount)
+                            {{{$item->carrying_amount}}}
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->variable->residual_value)
+                            {{{$item->variable->residual_value}}}
+                            @endif
+                        </td>
                         <td></td>
                         <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a></td>
                     </tr>
