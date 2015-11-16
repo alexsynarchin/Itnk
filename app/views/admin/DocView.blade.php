@@ -35,17 +35,21 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="control-bnts row">
-                    <div class="col-xs-8">
-                        <form action="{{action('AdminController@postImport',[$document->id])}}" method="post" class="form-inline col-xs-5" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input type="file" name="file">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Импортировать</button>
-                        </form>
+                    <div class="col-xs-12">
                          <a href="{{action('AdminController@getOrgDocs',[$document->user->organization_id])}}" class="add-btn btn btn-success">Сохранить документ</a>
-
+                        <a href="{{action('AdminController@getOrgDocs',[$document->user->organization_id])}}" class="add-btn btn btn-danger">Закрыть документ</a>
                     </div>
                 </div>
+                <form action="{{action('AdminController@postImport',[$document->id])}}" method="post" class="form-horizontal col-xs-12" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            <input type="file" name="file" class="form-control">
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="submit" class="btn btn-primary">Импортировать</button>
+                        </div>
+                    </div>
+                </form>
                 <table class="list table table-bordered table-striped table-hover">
                     <tr>
                         <th>Наименование</th>
