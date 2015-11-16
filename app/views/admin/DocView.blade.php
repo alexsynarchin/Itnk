@@ -22,7 +22,7 @@
                         <label class="control-label">Дата документа:</label><span class="date">{{$document->document_date}}</span>
                     </div>
                     <div class="os-form-group col-xs-4">
-                        <label class="control-label">Дата актуализации остатков:</label><span class="date">{{$document->actual_date}}</span>
+                        <label class="control-label">Дата актуализации остатков:</label><span class="date">{{$document->actual_date}} </span>
                     </div>
                     <div class="col-xs-3"><a href="{{action('AdminController@getDocEdit',array($document->id))}}" class="edit-btn btn btn-warning">Редактировать документ</a> </div>
                 </div>
