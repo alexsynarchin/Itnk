@@ -98,7 +98,7 @@
                         </td>
                         <td>
                             @if($item->variable->residual_value)
-                                {{{$item->variable->residual_value}}}
+                                {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
                             @endif
                         </td>
                         <td></td>
