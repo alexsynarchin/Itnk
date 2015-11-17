@@ -58,7 +58,7 @@
                             <td>{{{$item->carrying_amount}}}</td>
                             <td>
                             @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings'))
-                                    {{$item->variable->residual_value}}
+                                    {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
                            @endif
                            </td>
                             <td></td>
