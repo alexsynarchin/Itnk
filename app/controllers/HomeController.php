@@ -18,7 +18,7 @@ class HomeController extends BaseController {
 	public function index()
 	{
 
-                /*$documents = Auth::user() -> documents;
+                $documents = Auth::user() -> documents;
                 $i=0;
                 $num =$documents->count();
                 if($num == 0){
@@ -30,7 +30,7 @@ class HomeController extends BaseController {
                     }
                 }
                 $items=Item::where('document_id', $ids)->get();
-                return View::make('home',array('documents'=>$documents, 'items'=>$items));*/
-				return View::make('timeout');
+                return View::make('home',array('documents'=>$documents, 'items'=>$items));
+				//return View::make('timeout');
             }
 }
