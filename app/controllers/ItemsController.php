@@ -171,7 +171,7 @@ public function postAdd($id){
 				return View::make('items.edit', array('item' => $item,'document'=>$document, 'building'=>$building,'variable'=>$variable,'address'=>$address));
 			break;
 			case 'parcels':
-				$parcel=Item::find($id)->parcel;
+				$parcel=Item::find($id)->parcel();
 				$address=Address::find($id)->address();
 				return View::make('items.edit', array('item' => $item,'document'=>$document, 'parcel'=>$parcel,'address'=>$address));
 			break;

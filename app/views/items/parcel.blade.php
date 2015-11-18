@@ -9,7 +9,7 @@
 <div class="os-form-group col-md-6 col-xs-6">
     <label class="control-label">Назначение земель:</label>
     <div class="input-container">
-        <input required="required" type="text" class="form-control" name="assigning land">
+        <input required="required" type="text" class="form-control" name="assigning_land">
     </div>
 </div>
     <div class="os-form-group col-md-2 col-xs-2">
