@@ -220,7 +220,7 @@ public function postAdd($id){
 			$item->building->wall_material=Input::get('wall_material');
 			$item->building->date_construction=Input::get('date_construction');
 			$item->building->floors=Input::get('floors');
-			$item->item->building->save();
+			$item->building->save();
 			$item->address->state=Input::get('state');
 			$item->address->district=Input::get('district');
 			$item->address->city=Input::get('city');
