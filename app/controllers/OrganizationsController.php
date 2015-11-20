@@ -54,7 +54,9 @@ class OrganizationsController extends \BaseController {
 	}
 	public function getView($id){
 		$organization=Organization::find($id);
-		return View::make('organization.organization_view', array('organization'=>$organization));
+		$user =  Organization::find($id)-> user();
+		$documents = User::find($organization->user->id)->documents;
+		return View::make('organization.organization_view', ['organization'=>$organization, 'user'=>$user, 'documents'=>$documents]);
 	}
 	/**
 	 * Show the form for creating a new resource.

@@ -273,6 +273,64 @@ class AdminController extends \BaseController {
 		}
 		return Redirect::action('AdminController@getOrgDocs', [$organization_id]);
 	}
+	public function postCalcDocs($id)
+	{
+		$user=User::find($id);
+		$documents=User::find($id)->documents;
+		$sum_org_movables_carrying_amount=0;
+		$sum_org_value_movables_carrying_amount=0;
+		$sum_org_buildings_carrying_amount=0;
+		$sum_org_parcels_carrying_amount=0;
+		$sum_org_movables_residual_value=0;
+		$sum_org_value_movables_residual_value=0;
+		$sum_org_buildings_residual_value=0;
+		$sum_org_parcels_residual_value=0;
+
+		foreach ($documents as $document){
+			$items=Document::find($document->id)->items;
+			$sum_carrying_amount=0;
+			$sum_residual_value=0;
+			foreach($items as $item){
+				$sum_carrying_amount=+$item->carrying_amount;
+				$variable=Item::find($item->id)->variable;
+				$sum_residual_value=+$variable->residual_value;
+			}
+			$document->doc_carrying_amount=$sum_carrying_amount;
+			$document->doc_residual_value=$sum_residual_value;
+			$document->save();
+			$type=$document->os_type;
+			if($type =='movables'){
+				$sum_org_movables_carrying_amount=$sum_org_movables_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_movables_residual_value=$sum_org_movables_residual_value+$document->doc_residual_value;
+			}
+			if($type =='value_movables'){
+				$sum_org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_value_movables_residual_value=$sum_org_value_movables_residual_value+$document->doc_residual_value;
+			}
+			if($type=='buildings'){
+				$sum_org_buildings_carrying_amount=$sum_org_buildings_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_buildings_residual_value=$sum_org_buildings_residual_value+$document->doc_residual_value;
+			}
+			if($type=='parcels'){
+				$sum_org_parcels_carrying_amount=$sum_org_parcels_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_parcels_residual_value=$sum_org_parcels_residual_value+$document->doc_residual_value;
+			}
+		}
+		$organization_id = $user->organization_id;
+		$organization=Organization::find($organization_id);
+		$organization->org_movables_carrying_amount=$sum_org_movables_carrying_amount;
+		$organization->org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount;
+		$organization->org_buildings_carrying_amount=$sum_org_buildings_carrying_amount;
+		$organization->org_parcels_carrying_amount=$sum_org_parcels_carrying_amount;
+		$organization->org_movables_residual_value=$sum_org_movables_residual_value;
+		$organization->org_value_movables_residual_value=$sum_org_value_movables_residual_value;
+		$organization->org_buildings_residual_value=$sum_org_buildings_residual_value;
+		$organization->org_parcels_residual_value=$sum_org_parcels_residual_value;
+		$organization->org_carrying_amount=$organization->org_movables_carrying_amount+$organization->org_value_movables_carrying_amount+$organization->org_buildings_carrying_amount+$organization->org_parcels_carrying_amount;
+		$organization->org_residual_value=$organization->org_movables_residual_value+$organization->org_value_movables_residual_value+$organization->org_buildings_residual_value+$organization->org_parcels_residual_value;
+		$organization->save();
+		return Redirect::action('AdminController@getOrgDocs', [$organization_id]);
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

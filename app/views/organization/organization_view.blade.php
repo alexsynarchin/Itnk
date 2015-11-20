@@ -11,157 +11,100 @@
     <section class="content">
         <div class="control-bnts row">
             <div class=" right col-xs-6 col-xs-offset-6">
-                <a href="{{action('OssController@getOrgDocs', [$organization-> id])}}" class="big add-btn btn btn-primary">Документы организации</a>
+              <!--  <a href="{{action('OssController@getOrgDocs', [$organization-> id])}}" class="big add-btn btn btn-primary">Документы организации</a>-->
                 <a href="\organizations" class="big add-btn btn btn-danger">Закрыть</a>
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">
-                    <h3 class="panel-title">{{$organization -> full_name}}</h3>
-            </div>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <div class="os-form-group col-md-3 col-xs-3">
-                            <label>ИНН:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> inn}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-9 col-xs-9">
-                            <label>Фактический адрес:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> fact_address}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-md-3 col-xs-3">
-                            <label>КПП:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> kpp}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-9 col-xs-9">
-                            <label>Юридический адрес:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> legal_address}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-md-6 col-xs-6">
-                            <label>ФИО руководителя:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> fio}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-6 col-xs-6">
-                            <label>Должность руководителя:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> boss_position}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-md-5 col-xs-12">
-                            <label>На основании чего действует (для договора):</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> operate_foundation}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-7 col-xs-12">
-                            <label>В Банке:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> bank}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-md-4 col-xs-4">
-                            <label>РС:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> rs}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-4 col-xs-4">
-                            <label>КС:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> ks}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="os-form-group col-md-4 col-xs-4">
-                            <label>БИК:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> bik}}
-                                </p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-xs-12">
-                            <label>Ф.И.О. Ответственного сотрудника:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization->user-> first_name }} {{$organization->user-> last_name }} {{$organization->user-> surname }}
-                                </p>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="os-form-group col-xs-3">
-                            <label>Телефон:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> phone }}
-                                </p>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="os-form-group col-xs-3">
-                            <label>Email:</label>
-                            <div class="input-container">
-                                <p class="static">
-                                    {{$organization -> email }}
-                                </p>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <table class="list table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Итоговые суммы</th>
+                        <th>
+                            Движимое имущество
+                        </th>
+                        <th>
+                            Особо ценное движимое имущество
+                        </th>
+                        <th>
+                            Здания и сооружения
+                        </th>
+                        <th>Земельные участки</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Балансовая стоимость</td>
+                        <td>{{$organization->org_carrying_amount}}</td>
+                        <td>{{$organization->org_movables_carrying_amount}}</td>
+                        <td>{{$organization->org_value_movables_carrying_amount}}</td>
+                        <td>{{$organization->org_buildings_carrying_amount}}</td>
+                        <td>{{$organization->org_parcels_carrying_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td>Остаточная стоимость</td>
+                        <td>{{$organization->org_residual_value}}</td>
+                        <td>{{$organization->org_movables_residual_value}}</td>
+                        <td>{{$organization->org_value_movables_residual_value}}</td>
+                        <td>{{$organization->org_buildings_residual_value}}</td>
+                        <td>{{$organization->org_parcels_residual_value}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="document box">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-file-text-o"></i> Документы первичного ввода</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="list table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>
+                            Вид Основных средств
+                        </th>
+                        <th>
+                            Дата документа
+                        </th>
+                        <th>
+                            Дата актуализации остатков
+                        </th>
+                        <th>Балансовая стоимость</th>
+                        <th>Остаточная стоимость</th>
+                      <!--  <th>Действия</th>-->
+                    </tr>
+                        </thead>
+                    <tbody>
+                    @if($documents->count())
+                        @foreach($documents as $document)
+                            <tr>
+                                <td>{{$document->document_number}}</td>
+                                <td>{{ Document::$os_types[$document->os_type] }}</td>
+                                <td>{{$document->document_date}}</td>
+                                <td>{{$document->actual_date}}</td>
+                                <td>{{$document->doc_carrying_amount}}</td>
+                                <td>{{$document->doc_residual_value}}</td>
+                              <!--  <td class="actions icons">
+                                    <a href="{{action('OssController@getDocView', [$document->id])}}"><i class="fa fa-eye"></i></a>
+
+                                </td>-->
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody></table>
+            </div><!-- /.box-body -->
+            <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
             </div>
         </div>
     </section><!-- /.content -->

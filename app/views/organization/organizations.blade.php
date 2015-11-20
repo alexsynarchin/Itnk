@@ -20,6 +20,8 @@
                             <tr>
                                 <th>Название</th>
                                 <th>ИНН</th>
+                                <th>Балансовая стоимость</th>
+                                <th>Остаточная стоимость</th>
                                 <th>Действия</th>
                             </tr>
                             @foreach ($organizations as $organization)
@@ -28,6 +30,8 @@
                                 <tr>
                                     <td>{{{$organization->short_name}}}</td>
                                     <td>{{{$organization->inn}}}</td>
+                                    <td>{{{$organization->org_carrying_amount}}}</td>
+                                    <td>{{{$organization->org_residual_value}}}</td>
                                     <td class="actions icons"><a href="{{action('OrganizationsController@getView',array($organization->id))}}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                                 @endif

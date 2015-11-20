@@ -12,8 +12,8 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="control-bnts row">
-                    <div class="col-xs-4">
-                        <a class="add-btn btn btn-primary" href="{{action('AdminController@getDocAdd', [$organization->user->id])}}"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a>
+                    <div class="col-xs-6">
+                        <a class="add-btn btn btn-success" href="{{action('AdminController@getDocAdd', [$organization->user->id])}}"><i class="fa fa-plus-square-o"></i> Создать документ первичного ввода</a> <form method="post" class="inline" action="{{action('AdminController@postCalcDocs', [$organization->user->id])}}"><button type="submit" class="add-btn btn btn-primary">Рассчитать суммы документов</button></form>
                     </div>
                 </div>
                 <table class="list table table-bordered table-hover">
@@ -29,6 +29,8 @@
                        <th>
                            Дата актуализации остатков
                        </th>
+                       <th>Балансовая стоимость</th>
+                       <th>Остаточная стоимость</th>
                        <th>Действия</th>
                    </tr>
                    </thead>
@@ -40,6 +42,8 @@
                                 <td>{{ Document::$os_types[$document->os_type] }}</td>
                                 <td>{{$document->document_date}}</td>
                                 <td>{{$document->actual_date}}</td>
+                                <td>{{$document->doc_carrying_amount}}</td>
+                                <td>{{$document->doc_residual_value}}</td>
                                 <td class="actions icons">
                                     <a href="{{action('AdminController@getDocView', [$document->id])}}"><i class="fa fa-eye"></i></a>
                                     <a href="{{action('AdminController@getDocEdit',array($document->id))}}"><i class="fa fa-pencil-square-o"></i> </a>
