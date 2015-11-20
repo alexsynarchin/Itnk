@@ -37,18 +37,18 @@
                     <tbody>
                     <tr>
                         <td>Балансовая стоимость</td>
-                        <td>{{$organization->org_carrying_amount}}</td>
-                        <td>{{$organization->org_movables_carrying_amount}}</td>
-                        <td>{{$organization->org_value_movables_carrying_amount}}</td>
-                        <td>{{$organization->org_buildings_carrying_amount}}</td>
-                        <td>{{$organization->org_parcels_carrying_amount}}</td>
+                        <td>{{number_format($organization->org_carrying_amount, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_movables_carrying_amount, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_value_movables_carrying_amount, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_buildings_carrying_amount, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_parcels_carrying_amount, 2,'.', ' ')}}</td>
                     </tr>
                     <tr>
                         <td>Остаточная стоимость</td>
-                        <td>{{$organization->org_residual_value}}</td>
-                        <td>{{$organization->org_movables_residual_value}}</td>
-                        <td>{{$organization->org_value_movables_residual_value}}</td>
-                        <td>{{$organization->org_buildings_residual_value}}</td>
+                        <td>{{number_format($organization->org_residual_value, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_movables_residual_value, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_value_movables_residual_value, 2,'.', ' ')}}</td>
+                        <td>{{number_format($organization->org_buildings_residual_value, 2,'.', ' ')}}</td>
                         <td></td>
                     </tr>
                     </tbody>
