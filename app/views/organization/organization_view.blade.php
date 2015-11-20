@@ -49,7 +49,7 @@
                         <td>{{$organization->org_movables_residual_value}}</td>
                         <td>{{$organization->org_value_movables_residual_value}}</td>
                         <td>{{$organization->org_buildings_residual_value}}</td>
-                        <td>{{$organization->org_parcels_residual_value}}</td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>

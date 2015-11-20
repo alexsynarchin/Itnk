@@ -284,7 +284,6 @@ class AdminController extends \BaseController {
 		$sum_org_movables_residual_value=0;
 		$sum_org_value_movables_residual_value=0;
 		$sum_org_buildings_residual_value=0;
-		$sum_org_parcels_residual_value=0;
 
 		foreach ($documents as $document){
 			$items=Document::find($document->id)->items;
@@ -313,7 +312,6 @@ class AdminController extends \BaseController {
 			}
 			if($type=='parcels'){
 				$sum_org_parcels_carrying_amount=$sum_org_parcels_carrying_amount+$document->doc_carrying_amount;
-				$sum_org_parcels_residual_value=$sum_org_parcels_residual_value+$document->doc_residual_value;
 			}
 		}
 		$organization_id = $user->organization_id;
@@ -325,7 +323,6 @@ class AdminController extends \BaseController {
 		$organization->org_movables_residual_value=$sum_org_movables_residual_value;
 		$organization->org_value_movables_residual_value=$sum_org_value_movables_residual_value;
 		$organization->org_buildings_residual_value=$sum_org_buildings_residual_value;
-		$organization->org_parcels_residual_value=$sum_org_parcels_residual_value;
 		$organization->org_carrying_amount=$organization->org_movables_carrying_amount+$organization->org_value_movables_carrying_amount+$organization->org_buildings_carrying_amount+$organization->org_parcels_carrying_amount;
 		$organization->org_residual_value=$organization->org_movables_residual_value+$organization->org_value_movables_residual_value+$organization->org_buildings_residual_value+$organization->org_parcels_residual_value;
 		$organization->save();
