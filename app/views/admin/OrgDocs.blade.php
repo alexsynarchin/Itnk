@@ -38,7 +38,7 @@
                     @if($documents->count())
                         @foreach($documents as $document)
                             <tr>
-                                <td>{{$document->id}}</td>
+                                <td>{{$document->document_number}}</td>
                                 <td>{{ Document::$os_types[$document->os_type] }}</td>
                                 <td>{{$document->document_date}}</td>
                                 <td>{{$document->actual_date}}</td>
