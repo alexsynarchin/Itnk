@@ -86,8 +86,8 @@
                                 <td>{{ Document::$os_types[$document->os_type] }}</td>
                                 <td>{{$document->document_date}}</td>
                                 <td>{{$document->actual_date}}</td>
-                                <td>{{$document->doc_carrying_amount}}</td>
-                                <td>{{$document->doc_residual_value}}</td>
+                                <td>{{number_format($document->doc_carrying_amount, 2,'.', ' ')}}</td>
+                                <td>{{number_format($document->doc_residual_value, 2,'.', ' ')}}</td>
                               <!--  <td class="actions icons">
                                     <a href="{{action('OssController@getDocView', [$document->id])}}"><i class="fa fa-eye"></i></a>
 
