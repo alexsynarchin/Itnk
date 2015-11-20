@@ -291,9 +291,9 @@ class AdminController extends \BaseController {
 			$sum_carrying_amount=0;
 			$sum_residual_value=0;
 			foreach($items as $item){
-				$sum_carrying_amount=+$item->carrying_amount;
+				$sum_carrying_amount=$sum_carrying_amount+$item->carrying_amount;
 				$variable=Item::find($item->id)->variable;
-				$sum_residual_value=+$variable->residual_value;
+				$sum_residual_value=$sum_residual_value+$variable->residual_value;
 			}
 			$document->doc_carrying_amount=$sum_carrying_amount;
 			$document->doc_residual_value=$sum_residual_value;
