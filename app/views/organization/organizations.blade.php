@@ -17,22 +17,25 @@
                     </div><!-- /.box-header -->
                     <div class="box-body ">
                         <table class="list table table-bordered table-striped table-hover">
-                            <tr>
+                            <tr><th>№</th>
                                 <th>Название</th>
                                 <th>ИНН</th>
                                 <th>Балансовая стоимость</th>
                                 <th>Остаточная стоимость</th>
                                 <th>Действия</th>
                             </tr>
+                            <?php $i=1; ?>
                             @foreach ($organizations as $organization)
                                 @if(($organization->id==1)||(($organization->id==27)))
                                 @else
                                 <tr>
+                                    <td>{{$i}}</td>
                                     <td>{{{$organization->short_name}}}</td>
                                     <td>{{{$organization->inn}}}</td>
                                     <td>{{number_format($organization->org_carrying_amount, 2,'.', ' ')}}</td>
                                     <td>{{number_format($organization->org_residual_value, 2,'.', ' ')}}</td>
                                     <td class="actions icons"><a href="{{action('OrganizationsController@getView',array($organization->id))}}"><i class="fa fa-eye"></i></a></td>
+                                    <?php $i=$i+1;?>
                                 </tr>
                                 @endif
                             @endforeach

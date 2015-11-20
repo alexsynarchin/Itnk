@@ -26,18 +26,22 @@
                 <table class="list table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>№</th>
                             <th>Название</th>
                             <th>ИНН</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $i=1; ?>
                         @foreach ($organizations as $organization)
                             <tr>
+                                <td>{{$i}}</td>
                                 <td>{{{$organization->short_name}}}</td>
                                 <td>{{{$organization->inn}}}</td>
                                 <td class="actions icons"><a href="{{action('AdminController@getOrgView',array($organization->id))}}"><i class="fa fa-eye"></i></a>  <a href="{{action('AdminController@getEdit',array($organization->id))}}"><i class="fa fa-pencil-square-o"></i> </a> <a href="{{action('AdminController@getOrgDocs',array($organization->id))}}"><i class="fa fa-file-text-o"></i></a></td>
                             </tr>
+                            <?php $i=$i+1;?>
                         @endforeach
                     </tbody>
                 </table>
