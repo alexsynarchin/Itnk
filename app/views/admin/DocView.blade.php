@@ -52,6 +52,7 @@
                 </form>
                 <table class="list table table-bordered table-striped table-hover">
                     <tr>
+                        <th>№</th>
                         <th>Наименование</th>
                         <th>Инвентарный номер</th>
                         <th>Код ОКОФ</th>
@@ -60,8 +61,10 @@
                         <th>Дата ввода в эксплуатацию</th>
                         <th>Действия</th>
                     </tr>
+                    <?php $i=1; ?>
                     @foreach ($items as $item)
                         <tr>
+                            <td>{{$i}}</td>
                             <td>{{{$item->name}}}</td>
                             <td>{{{$item->number}}}</td>
                             <td>{{{$item->okof}}}</td>
@@ -74,6 +77,7 @@
                             <td></td>
                             <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
                         </tr>
+                        <?php $i=$i+1;?>
                     @endforeach
 
                 </table>
