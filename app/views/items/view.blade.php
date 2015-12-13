@@ -178,21 +178,21 @@
                             <div class="os-form-group col-xs-5">
                                 <label class="control-label">Остаточная стоимость:</label>
                                 <div class="input-container">
-                                    <span >{{$item->variable->residual_value}}</span>
+                                    <span >{{isset($item->variable->residual_value) ? $item->variable->residual_value: ""}}</span>
                                 </div>
                                 <hr>
                             </div>
                             <div class="os-form-group col-xs-3">
                                 <label class="control-label">Месячная норма:</label>
                                 <div class="input-container">
-                                    <span >{{$item->variable->monthly_rate}}</span>
+                                    <span >{{isset($item->variable->monthly_rate) ? $item->variable->monthly_rate : ""}}</span>
                                 </div>
                                 <hr>
                             </div>
                             <div class="os-form-group col-xs-4">
                                 <label class="control-label">Срок полезного использования:</label>
                                 <div class="input-container">
-                                    <span >{{$item->variable->useful_life}}</span>
+                                    <span >{{isset($item->variable->useful_life) ? $item->variable->useful_life : ""}}</span>
                                 </div>
                                 <hr>
                             </div>

@@ -80,7 +80,8 @@ class AdminController extends \BaseController {
 		$user =Document::find($id)->user();
 		$organization_id = $document->user->organization_id;
 		$organization=Organization::find($organization_id);
-		$items = Document::find($id)->items;
+		//$items = Document::find($id)->items;
+		$items = Item::where('document_id', '=', $id)->paginate(50);
 		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);

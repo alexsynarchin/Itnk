@@ -179,7 +179,7 @@ public function postAdd($id){
 
 	}
 	public function postUpdate($id){
-		$item=Item::find($id);
+		$item=Item::find($id)->paginate(15);
 		$document=Item::find($id)->document();
 		$type=$item->document->os_type;
 		if(($type=='movables')||($type=='value_movables')){

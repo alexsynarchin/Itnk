@@ -92,7 +92,8 @@ class DocumentsController extends \BaseController {
 	}
 	public function getView($id){
 		$document = Document::find($id);
-		$items = Document::find($id)->items;
+		//$items = Document::find($id)->items;
+		$items = Item::where('document_id', '=', $id)->paginate(50);
 		// Если такого документа нет, то вернем пользователю ошибку 404 - Не найдено
 		if (!$document) {
 			App::abort(404);

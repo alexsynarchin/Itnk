@@ -71,6 +71,7 @@
                     @endforeach
 
                 </table>
+                <?php echo $items->links(); ?>
             </div><!-- /.box-body -->
             <div class="box-footer">
 
