@@ -42,14 +42,20 @@
                 </div>
                 <form action="{{action('AdminController@postImport',[$document->id])}}" method="post" class="form-horizontal col-xs-12" enctype="multipart/form-data">
                     <div class="form-group">
-                        <div class="col-xs-4">
+                        <div class="col-xs-10">
                             <input type="file" name="file" class="form-control">
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             <button type="submit" class="btn btn-primary">Импортировать</button>
                         </div>
                     </div>
                 </form>
+                <div class="document_sum">
+
+                        <label>Сумма по балансовой стоимости:</label> <span>{{$document->doc_carrying_amount}}</span>
+                    <label>Сумма по остаточной стоимости:</label> <span>{{$document->doc_residual_value}}</span>
+
+                </div>
                 <table class="list table table-bordered table-striped table-hover">
                     <tr>
                         <th>№</th>
