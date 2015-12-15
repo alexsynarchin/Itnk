@@ -40,6 +40,10 @@
 
                     </div>
                 </div>
+                <div class="document_sum">
+                    <label>Сумма по балансовой стоимости:</label> <span>{{$document->doc_carrying_amount}}</span><br>
+                    <label>Сумма по остаточной стоимости:</label> <span>{{$document->doc_residual_value}}</span>
+                </div>
                 <table class="list table table-bordered table-striped table-hover">
                     <tr>
                         <th>№</th>
