@@ -181,7 +181,9 @@ class AdminController extends \BaseController {
 						$car -> model = $data[13];
 						$manufacture_year = date("Y-m-d", strtotime($data[14]));
 						$car -> manufacture_year = $manufacture_year;
-						$car -> vin = $data[15];
+						$vin = $data[15];
+						$vin = str_replace('"','',$vin);
+						$car -> vin = $vin;
 						$car -> kpp = $data[16];
 						$car -> engine = $data[17];
 						$car -> power = $data[18];
