@@ -55,16 +55,12 @@
                             <td>{{{$item->okof}}}</td>
                             <td>{{{$item->carrying_amount}}}</td>
                             <td>
-                                @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings'))
-                                    {{$item->variable->residual_value}}
+                                @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings')||($document->os_type == 'car'))
+                                    {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
                                 @endif
                             </td>
                             <td>
-                                @if($item->variable->exploitation_date != 0)
-                                    {{$item->variable->exploitation_date}}
-                                @else
-                                    Не введено
-                                @endif
+                                {{{isset($item->variable->exploitation_date) ? $item->variable->exploitation_date :  '-'}}}
                             </td>
                             <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a></td>
                         </tr>
