@@ -179,7 +179,8 @@ class AdminController extends \BaseController {
 						$car =  new Car;
 						$car -> brand = $data[12];
 						$car -> model = $data[13];
-						$car -> manufacture_year = $data[14];
+						$manufacture_year = date("Y-m-d", strtotime($data[14]));
+						$car -> manufacture_year = $manufacture_year;
 						$car -> vin = $data[15];
 						$car -> kpp = $data[16];
 						$car -> engine = $data[17];
@@ -291,6 +292,19 @@ class AdminController extends \BaseController {
 				$document->items()->delete();
 				$document->delete();
 				break;
+			case 'car':
+				foreach($document->items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+
+				}
+				foreach($document->items as $item){
+					$car=Item::find($item->id)->car();
+					$car->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+			break;
 			case 'buildings':
 				foreach($document->items as $item){
 					$variable=Item::find($item->id)->variable();
