@@ -11,6 +11,7 @@ class Document extends Eloquent {
         'movables' => 'Движимое имущество',
         'value_movables' => 'Особо ценное движимое имущество',
         'buildings' => 'Здания и сооружения',
-        'parcels' => 'Земельные участки'
+        'parcels' => 'Земельные участки',
+        'car'   =>  'Автомобили'
     );
 }

@@ -50,15 +50,8 @@
                             <hr>
                         </div>
                     </div>
-                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
+                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings')||($item->document->os_type=='car'))
                         <div class="row form-group">
-                            <div class="os-form-group col-xs-6">
-                                <label class="control-label">Вид ОС:</label>
-                                <div class="input-container">
-                                    <span >{{$item->os_view}}</span>
-                                </div>
-                                <hr>
-                            </div>
                             <div class="os-form-group col-xs-6">
                                 <label class="control-label">Код ОКОФ:</label>
                                 <div class="input-container">
@@ -173,7 +166,20 @@
                             <hr>
                         </div>
                     </div>
-                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
+                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings')||($item->document->os_type=='car'))
+                        <div class="row form-group">
+                            <div class="os-form-group col-xs-6">
+                                <label class="control-label">Дата ввода в эксплуатацию </label>
+                                <div class="input-container">
+                                <span>
+                                    @if($item->variable->exploitation_date != 0){{$item->variable->exploitation_date}}
+                                    @else Не введено в эксплуатацию
+                                    @endif
+                                </span>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <div class="os-form-group col-xs-5">
                                 <label class="control-label">Остаточная стоимость:</label>
@@ -193,6 +199,31 @@
                                 <label class="control-label">Срок полезного использования:</label>
                                 <div class="input-container">
                                     <span >{{isset($item->variable->useful_life) ? $item->variable->useful_life : ""}}</span>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    @endif
+                    @if($item->document->os_type=='car')
+                        <div class="row form-group">
+                            <div class="os-form-group col-xs-5">
+                                <label class="control-label">Марка:</label>
+                                <div class="input-container">
+                                    <span >{{$item->car->brand}}</span>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="os-form-group col-xs-3">
+                                <label class="control-label">Модель:</label>
+                                <div class="input-container">
+                                    <span >{{$item->car->model}}</span>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="os-form-group col-xs-4">
+                                <label class="control-label">Год выпуска:</label>
+                                <div class="input-container">
+                                    <span >{{$item->car->manufacture_year}}</span>
                                 </div>
                                 <hr>
                             </div>

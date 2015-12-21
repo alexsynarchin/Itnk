@@ -64,11 +64,17 @@
                             <td>{{{$item->okof}}}</td>
                             <td>{{{$item->carrying_amount}}}</td>
                             <td>
-                            @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings'))
+                            @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings')||($document->os_type=='car'))
                                     {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
                            @endif
                            </td>
-                            <td></td>
+                            <td>
+                                @if($item->variable->exploitation_date != 0)
+                                    {{$item->variable->exploitation_date}}
+                                @else
+                                Не введено
+                                @endif
+                            </td>
                             <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
                         </tr>
                         <?php $i=$i+1;?>

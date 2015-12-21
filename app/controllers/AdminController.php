@@ -132,6 +132,8 @@ class AdminController extends \BaseController {
 						$item -> document_id = $id;
 						$item->save();
 						$variable = new Variable;
+						$exploitation_date = date("Y-m-d", strtotime($data[3]));
+						$variable -> exploitation_date = $exploitation_date;
 						$residual_value=$data[8];
 						$residual_value=str_replace(",",".",$residual_value);
 						$residual_value=str_replace(" ","",$residual_value);
@@ -141,6 +143,49 @@ class AdminController extends \BaseController {
 						$variable -> monthly_rate = $monthly_rate;
 						$variable -> useful_life = $data[11];
 						$item->variable()->save($variable);
+					}
+				}
+				if($type=='car'){
+					while (($data = fgetcsv($handle, 1000, ';')) !==FALSE)
+					{
+						$item = new Item();
+						$name = iconv("Windows-1251", "utf-8", $data[0]);
+						$item->name = $name;
+						$item->number=$data[1];
+						$os_date = date("Y-m-d", strtotime($data[2]));
+						$item -> os_date=$os_date;
+						$okof=$data[5];
+						$okof = str_replace(" ","",$okof);
+						$item -> okof=$okof;
+						$carrying_amount=$data[6];
+						$carrying_amount=str_replace(",",".",$carrying_amount);
+						$carrying_amount=str_replace(" ","",$carrying_amount);
+						$item->carrying_amount=$carrying_amount;
+						$item->financing_source=1;
+						$item -> document_id = $id;
+						$item->save();
+						$variable = new Variable;
+						$exploitation_date = date("Y-m-d", strtotime($data[3]));
+						$variable -> exploitation_date = $exploitation_date;
+						$residual_value=$data[8];
+						$residual_value=str_replace(",",".",$residual_value);
+						$residual_value=str_replace(" ","",$residual_value);
+						$variable -> residual_value = $residual_value;
+						$monthly_rate=$data[10];
+						$monthly_rate=str_replace(",",".",$monthly_rate);
+						$variable -> monthly_rate = $monthly_rate;
+						$variable -> useful_life = $data[11];
+						$item->variable()->save($variable);
+						$car =  new Car;
+						$car -> brand = $data[12];
+						$car -> model = $data[13];
+						$car -> manufacture_year = $data[14];
+						$car -> vin = $data[15];
+						$car -> kpp = $data[16];
+						$car -> engine = $data[17];
+						$car -> power = $data[18];
+						$car -> color = $data[19];
+						$item->car()->save($car);
 					}
 				}
 				if($type=='buildings'){
@@ -162,6 +207,8 @@ class AdminController extends \BaseController {
 						$item -> document_id = $id;
 						$item->save();
 						$variable = new Variable;
+						$exploitation_date = date("Y-m-d", strtotime($data[3]));
+						$variable -> exploitation_date = $exploitation_date;
 						$residual_value=$data[8];
 						$residual_value=str_replace(",",".",$residual_value);
 						$residual_value=str_replace(" ","",$residual_value);

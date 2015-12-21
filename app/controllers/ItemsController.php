@@ -32,12 +32,45 @@ public function postAdd($id){
 		$item -> document_id = $id;
 		$item->save();
 		$variable = new Variable;
+		$variable -> exploitation_date = Input::get('exploitation_date');
 		$variable -> residual_value = Input::get('residual_value');
 		$variable -> monthly_rate = Input::get('monthly_rate');
 		$variable -> useful_life = Input::get('useful_life');
 		$item->variable()->save($variable);
 		return Redirect::action('DocumentsController@getView',[$item->document_id]);
 	}
+	if($type=='car'){
+		$item = new Item;
+		$item -> name=Input::get('name');
+		$item -> os_date=Input::get('os_date');
+		$item -> number=Input::get('number');
+		//$item -> os_view=Input::get('os_view');
+		$item -> okof=Input::get('okof');
+		$item->carrying_amount=Input::get('carrying_amount');
+		$item->financing_source=Input::get('financing_source');
+		$item->additional_field=Input::get('additional_field');
+		$item -> document_id = $id;
+		$item->save();
+		$variable = new Variable;
+		$variable -> exploitation_date = Input::get('exploitation_date');
+		$variable -> residual_value = Input::get('residual_value');
+		$variable -> monthly_rate = Input::get('monthly_rate');
+		$variable -> useful_life = Input::get('useful_life');
+		$item->variable()->save($variable);
+		$car = new Car;
+		$car -> brand = Input::get('brand');
+		$car -> model = Input::get('model');
+		$car -> manufacture_year = Input::get('manufacture_year');
+		$car -> vin = Input::get('vin');
+		$car -> kpp = Input::get('kpp');
+		$car -> engine = Input::get('engine');
+		$car -> power = Input::get('power');
+		$car -> color = Input::get('color');
+		$car -> car_type = Input::get('car_type');
+		$item->car()->save($car);
+		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+	}
+
 	if($type=='buildings'){
 		$item = new Item;
 		$item -> name=Input::get('name');
@@ -51,6 +84,7 @@ public function postAdd($id){
 		$item -> document_id = $id;
 		$item->save();
 		$variable = new Variable;
+		$variable -> exploitation_date = Input::get('exploitation_date');
 		$variable -> residual_value = Input::get('residual_value');
 		$variable -> monthly_rate = Input::get('monthly_rate');
 		$variable -> useful_life = Input::get('useful_life');
@@ -139,6 +173,14 @@ public function postAdd($id){
 				$item->delete();
 				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 				break;
+			case 'car':
+				$variable=Item::find($id)->variable();
+				$variable->delete();
+				$car =Item::find($id)->car();
+				$car->delete();
+				$item->delete();
+				return Redirect::action('DocumentsController@getView', [$item->document->id]);
+			break;
 			case 'parcels':
 				$parcel=Item::find($id)->parcel();
 				$address=Item::find($id)->address();
@@ -164,6 +206,11 @@ public function postAdd($id){
 				$variable=Item::find($id)->variable();
 				return View::make('items.edit', array('item' => $item,'document'=>$document, 'variable'=>$variable));
 			break;
+			case 'car':
+				$variable=Item::find($id)->variable();
+				$car = Car::find($id)->car();
+				return View::make('items.edit', array('item' => $item,'document'=>$document, 'variable'=>$variable, 'car' => $car));
+			break;
 			case 'buildings':
 				$variable=Item::find($id)->variable();
 				$building=Item::find($id)->building();
@@ -179,7 +226,7 @@ public function postAdd($id){
 
 	}
 	public function postUpdate($id){
-		$item=Item::find($id)->paginate(15);
+		$item=Item::find($id);
 		$document=Item::find($id)->document();
 		$type=$item->document->os_type;
 		if(($type=='movables')||($type=='value_movables')){
@@ -193,10 +240,41 @@ public function postAdd($id){
 			$item->additional_field=Input::get('additional_field');
 			$item->save();
 			$variable=Item::find($id)->variable();
+			$variable -> exploitation_date = Input::get('exploitation_date');
 			$item->variable -> residual_value = Input::get('residual_value');
 			$item->variable -> monthly_rate = Input::get('monthly_rate');
 			$item->variable -> useful_life = Input::get('useful_life');
 			$item->variable->save();
+			return Redirect::action('DocumentsController@getView',[$item->document_id]);
+		}
+		if($type=='car'){
+			$item -> name=Input::get('name');
+			$item -> os_date=Input::get('os_date');
+			$item -> number=Input::get('number');
+			//$item -> os_view=Input::get('os_view');
+			$item -> okof=Input::get('okof');
+			$item->carrying_amount=Input::get('carrying_amount');
+			$item->financing_source=Input::get('financing_source');
+			$item->additional_field=Input::get('additional_field');
+			$item -> document_id = $id;
+			$item->save();
+			$variable=Item::find($id)->variable();
+			$variable -> exploitation_date = Input::get('exploitation_date');
+			$variable -> residual_value = Input::get('residual_value');
+			$variable -> monthly_rate = Input::get('monthly_rate');
+			$variable -> useful_life = Input::get('useful_life');
+			$item->variable->save();
+			$car = Item::find($id)->car();
+			$car -> brand = Input::get('brand');
+			$car -> model = Input::get('model');
+			$car -> manufacture_year = Input::get('manufacture_year');
+			$car -> vin = Input::get('vin');
+			$car -> kpp = Input::get('kpp');
+			$car -> engine = Input::get('engine');
+			$car -> power = Input::get('power');
+			$car -> color = Input::get('color');
+			$car -> car_type = Input::get('car_type');
+			$item->car->save();
 			return Redirect::action('DocumentsController@getView',[$item->document_id]);
 		}
 		if($type=='buildings'){
@@ -212,6 +290,7 @@ public function postAdd($id){
 			$item->financing_source=Input::get('financing_source');
 			$item->additional_field=Input::get('additional_field');
 			$item->save();
+			$variable -> exploitation_date = Input::get('exploitation_date');
 			$item->variable -> residual_value = Input::get('residual_value');
 			$item->variable -> monthly_rate = Input::get('monthly_rate');
 			$item->variable -> useful_life = Input::get('useful_life');

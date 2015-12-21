@@ -17,6 +17,9 @@ class Item extends \Eloquent {
 	public  function variable(){
 		return $this->hasOne('Variable');
 	}
+	public  function car(){
+		return $this->hasOne('Car');
+	}
 	public static $os_finance = array(
 		'budget' => 'Бюджет',
 		'out_budget' => 'Внебюджет'

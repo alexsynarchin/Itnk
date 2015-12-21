@@ -57,6 +57,19 @@ class DocumentsController extends \BaseController {
 				$document->delete();
 				return Redirect::to('documents');
 			break;
+			case 'car':
+				foreach($document->items as $item){
+					$variable=Item::find($item->id)->variable();
+					$variable->delete();
+				}
+				foreach($document->items as $item){
+					$car=Item::find($item->id)->car();
+					$car->delete();
+				}
+				$document->items()->delete();
+				$document->delete();
+				return Redirect::to('documents');
+			break;
 			case 'buildings':
 				foreach($document->items as $item){
 					$variable=Item::find($item->id)->variable();

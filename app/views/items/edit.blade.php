@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
+                    @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings')||($item->document->os_type=='car'))
                         @include('items.edit.okof-edit')
                     @endif
                     @if($item->document->os_type==('parcels'))
@@ -57,6 +57,9 @@
                 @endif
                 @if(($item->document->os_type=='buildings')||($item->document->os_type=='parcels'))
                     @include('items.edit.address-edit')
+                @endif
+                @if($item->document->os_type=='car')
+                    @include('items.edit.car-edit')
                 @endif
                 <div class="form-group">
                     <div class="os-form-group col-md-6 col-xs-6">
@@ -72,7 +75,15 @@
                         </div>
                     </div>
                 </div>
-                @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings'))
+                @if(($item->document->os_type=='movables')||($item->document->os_type=='value_movables')||($item->document->os_type=='buildings')||($item->document->os_type=='car'))
+                    <div class="form-group">
+                        <div class="os-form-group col-xs-6 col-md-6 col-lg-6 ">
+                            <label class="control-label">Дата ввода в эксплуатацию</label>
+                            <div class="input-container">
+                                <input  type="date" value="{{isset($item->variable->exploitation_date) ? $item->exploitation_date:0 }}" name="exploitation_date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="os-form-group col-md-5 col-xs-5">
                             <label for="name" class="control-label">Остаточная стоимость:</label>
@@ -94,7 +105,6 @@
                         </div>
                     </div>
                 @endif
-
                 <div class="form-group">
                     <div class="os-form-group col-xs-12">
                         <label  class="control-label">Дополнительное поле:</label>
