@@ -2,6 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>{{$organization -> short_name}}  <small>Система ИТНК-ОБЗОР</small></h1>
+        <h4><label>ИНН:</label> {{$organization->inn}}</h4>
     </section>
 
     <!-- Main content -->

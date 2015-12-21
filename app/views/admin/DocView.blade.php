@@ -12,6 +12,7 @@
     </section>
     <section class="content">
     <h3>{{$organization->short_name}}</h3>
+        <h4><label>ИНН:</label> {{$organization->inn}}</h4>
         <div class="document box">
             <div class="box-header with-border">
                 <div class="form-group">
