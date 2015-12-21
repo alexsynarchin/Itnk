@@ -69,10 +69,12 @@
                            @endif
                            </td>
                             <td>
+                                @if($document->os_type != 'parcels')
                                 @if($item->variable->exploitation_date != 0)
                                     {{$item->variable->exploitation_date}}
                                 @else
                                 Не введено
+                                @endif
                                 @endif
                             </td>
                             <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a><a href="{{action('ItemsController@getDelete',array($item->id))}}"><i class="fa fa-trash"></i></a></td>
