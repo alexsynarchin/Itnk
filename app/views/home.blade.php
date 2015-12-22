@@ -133,11 +133,11 @@
                         </td>
                         <td>
                             @if($item->carrying_amount)
-                                {{{$item->carrying_amount}}}
+                                {{{number_format($item->carrying_amount, 2, '.', ' ')}}}
                             @endif
                         </td>
                         <td>
-                                {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
+                                {{{isset($item->variable->residual_value) ? number_format($item->variable->residual_value, 2, '.', ' ') : 0}}}
 
                         </td>
                         <td></td>

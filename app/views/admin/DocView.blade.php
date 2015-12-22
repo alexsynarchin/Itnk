@@ -73,10 +73,10 @@
                             <td>{{{$item->name}}}</td>
                             <td>{{{$item->number}}}</td>
                             <td>{{{$item->okof}}}</td>
-                            <td>{{{$item->carrying_amount}}}</td>
+                            <td>{{{number_format($item->carrying_amount, 2, '.', ' ')}}}</td>
                             <td>
                                 @if(($document->os_type == 'movables')||($document->os_type == 'value_movables')||($document->os_type == 'buildings')||($document->os_type == 'car'))
-                                    {{{isset($item->variable->residual_value) ? $item->variable->residual_value : 0}}}
+                                    {{{isset($item->variable->residual_value) ? number_format($item->variable->residual_value, 2, '.', ' ') : 0}}}
                                 @endif
                             </td>
                             <td>
