@@ -348,6 +348,8 @@ class AdminController extends \BaseController {
 		$sum_org_movables_residual_value=0;
 		$sum_org_value_movables_residual_value=0;
 		$sum_org_buildings_residual_value=0;
+		$sum_org_cars_carrying_amount = 0;
+		$sum_org_cars_residual_value = 0;
 
 		foreach ($documents as $document){
 			$type=$document->os_type;
@@ -355,10 +357,18 @@ class AdminController extends \BaseController {
 			$sum_carrying_amount=0;
 			$sum_residual_value=0;
 			foreach($items as $item){
-				$sum_carrying_amount=$sum_carrying_amount+$item->carrying_amount;
+				if(isset($item->carrying_amount)){
+					$sum_carrying_amount=$sum_carrying_amount+$item->carrying_amount;
+				}
+				else{
+					$sum_carrying_amount=$sum_carrying_amount;
+				}
 				if($type!='parcels'){
 					$variable=Item::find($item->id)->variable;
-					$sum_residual_value=$sum_residual_value+$variable->residual_value;
+					if(isset($variable->residual_value)){
+						$sum_residual_value=$sum_residual_value+$variable->residual_value;
+					}
+					$sum_residual_value=$sum_residual_value;
 				}
 			}
 			$document->doc_carrying_amount=$sum_carrying_amount;
@@ -375,8 +385,8 @@ class AdminController extends \BaseController {
 				$sum_org_value_movables_residual_value=$sum_org_value_movables_residual_value+$document->doc_residual_value;
 			}
 			if ($type == 'cars') {
-				$sum_org_cars_carrying_amount=$sum_org_value_movables_carrying_amount+$document->doc_carrying_amount;
-				$sum_org_value_movables_residual_value=$sum_org_value_movables_residual_value+$document->doc_residual_value;
+				$sum_org_cars_carrying_amount = $sum_org_cars_carrying_amount + $document->doc_carrying_amount;
+				$sum_org_cars_residual_value=$sum_org_cars_residual_value+$document->doc_residual_value;
 			}
 			if($type=='buildings'){
 				$sum_org_buildings_carrying_amount=$sum_org_buildings_carrying_amount+$document->doc_carrying_amount;
@@ -390,11 +400,13 @@ class AdminController extends \BaseController {
 		$organization=Organization::find($organization_id);
 		$organization->org_movables_carrying_amount=$sum_org_movables_carrying_amount;
 		$organization->org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount;
+		$organization->org_cars_carrying_amount = $sum_org_cars_carrying_amount;
 		$organization->org_buildings_carrying_amount=$sum_org_buildings_carrying_amount;
 		$organization->org_parcels_carrying_amount=$sum_org_parcels_carrying_amount;
 		$organization->org_movables_residual_value=$sum_org_movables_residual_value;
 		$organization->org_value_movables_residual_value=$sum_org_value_movables_residual_value;
 		$organization->org_buildings_residual_value=$sum_org_buildings_residual_value;
+		$organization ->org_cars_residual_value = $sum_org_cars_residual_value;
 		$organization->org_carrying_amount=$organization->org_movables_carrying_amount+$organization->org_value_movables_carrying_amount+$organization->org_buildings_carrying_amount+$organization->org_parcels_carrying_amount;
 		$organization->org_residual_value=$organization->org_movables_residual_value+$organization->org_value_movables_residual_value+$organization->org_buildings_residual_value;
 		$organization->save();
