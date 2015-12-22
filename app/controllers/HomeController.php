@@ -29,8 +29,9 @@ class HomeController extends BaseController {
                         $ids[$i]=$document->id;
                     }
                 }
+                $organization = Auth::user() -> organization;
                 $items=Item::where('document_id', $ids)->get();
-                return View::make('home',array('documents'=>$documents, 'items'=>$items));
+                return View::make('home',array('documents'=>$documents, 'items'=>$items, 'organization' => $organization));
 				//return View::make('timeout');
             }
 }

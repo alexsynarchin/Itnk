@@ -13,6 +13,46 @@
 
     <!-- Main content -->
 <section class="content">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="list table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Итоговые суммы</th>
+                    <th>
+                        Движимое имущество
+                    </th>
+                    <th>
+                        Особо ценное движимое имущество
+                    </th>
+                    <th>
+                        Здания и сооружения
+                    </th>
+                    <th>Земельные участки</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Балансовая стоимость</td>
+                    <td>{{number_format($organization->org_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_movables_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_value_movables_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_buildings_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_parcels_carrying_amount, 2,'.', ' ')}}</td>
+                </tr>
+                <tr>
+                    <td>Остаточная стоимость</td>
+                    <td>{{number_format($organization->org_residual_value, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_movables_residual_value, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_value_movables_residual_value, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_buildings_residual_value, 2,'.', ' ')}}</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
                 <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-file-text-o"></i> Документы</h3>
