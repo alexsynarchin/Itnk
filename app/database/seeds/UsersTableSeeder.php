@@ -210,13 +210,13 @@ class UsersTableSeeder extends Seeder {
 				'organization_id' => '25'
 			),
 			array(
-				'first_name' => 'Гузель',
-				'last_name' => 'Риммовна',
-				'surname' => '',
-				'username' => '1-0275071849',
-				'password' => Hash::make('k387edm4'),
-				'organization_id' => '26'
-			),
+						'first_name' => 'Гузель',
+						'last_name' => 'Риммовна',
+						'surname' => '',
+						'username' => '1-0275071849',
+						'password' => Hash::make('k387edm4'),
+						'organization_id' => '26'
+				),
 			array(
 				'first_name' => 'Максим',
 				'last_name' => 'Красноперов',

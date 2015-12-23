@@ -146,7 +146,7 @@ class AdminController extends \BaseController {
 					}
 				}
 				if($type=='car'){
-					while (($data = fgetcsv($handle, 1000, ';')) !==FALSE)
+					while (($data = fgetcsv($handle, 2000, ';')) !==FALSE)
 					{
 						$item = new Item();
 						$name = iconv("Windows-1251", "utf-8", $data[0]);
@@ -187,7 +187,10 @@ class AdminController extends \BaseController {
 						$car -> kpp = $data[16];
 						$car -> engine = $data[17];
 						$car -> power = $data[18];
-						$car -> color = $data[19];
+						if(isset($data[19])){
+							$car -> color = $data[19];
+						}
+
 						$item->car()->save($car);
 					}
 				}
