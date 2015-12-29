@@ -15,6 +15,9 @@
 <section class="content">
     <div class="panel panel-default">
         <div class="panel-body">
+            <div class="control-bnts">
+                    <form method="post" class="inline" action="{{action('OrganizationsController@postCalcSums', [$organization->id])}}"><button type="submit" class="add-btn btn btn-success">Обновить итоговые суммы по организации</button></form>
+                </div>
             <table class="list table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -26,6 +29,7 @@
                     <th>
                         Особо ценное движимое имущество
                     </th>
+                    <th>Автомобили</th>
                     <th>
                         Здания и сооружения
                     </th>
@@ -38,6 +42,7 @@
                     <td>{{number_format($organization->org_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_movables_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_value_movables_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->cars_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_buildings_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_parcels_carrying_amount, 2,'.', ' ')}}</td>
                 </tr>
@@ -46,6 +51,7 @@
                     <td>{{number_format($organization->org_residual_value, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_movables_residual_value, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_value_movables_residual_value, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_cars_residual_value, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_buildings_residual_value, 2,'.', ' ')}}</td>
                     <td></td>
                 </tr>

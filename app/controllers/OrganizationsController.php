@@ -17,6 +17,56 @@ class OrganizationsController extends \BaseController {
 	public function getAdd(){
 		return View::make('organization.add');
 	}
+	public function postCalcSums($id){
+		$sum_org_movables_carrying_amount=0;
+		$sum_org_value_movables_carrying_amount=0;
+		$sum_org_buildings_carrying_amount=0;
+		$sum_org_parcels_carrying_amount=0;
+		$sum_org_movables_residual_value=0;
+		$sum_org_value_movables_residual_value=0;
+		$sum_org_buildings_residual_value=0;
+		$sum_org_cars_carrying_amount = 0;
+		$sum_org_cars_residual_value = 0;
+		$user=Organization::find($id)->user;
+		$documents=User::find($user->id)-> documents;
+		foreach ($documents as $document){
+			$type=$document->os_type;
+			if($type =='movables'){
+				$sum_org_movables_carrying_amount=$sum_org_movables_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_movables_residual_value=$sum_org_movables_residual_value+$document->doc_residual_value;
+			}
+			if($type =='value_movables'){
+				$sum_org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_value_movables_residual_value=$sum_org_value_movables_residual_value+$document->doc_residual_value;
+			}
+			if ($type == 'cars') {
+				$sum_org_cars_carrying_amount = $sum_org_cars_carrying_amount + $document->doc_carrying_amount;
+				$sum_org_cars_residual_value=$sum_org_cars_residual_value+$document->doc_residual_value;
+			}
+			if($type=='buildings'){
+				$sum_org_buildings_carrying_amount=$sum_org_buildings_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_buildings_residual_value=$sum_org_buildings_residual_value+$document->doc_residual_value;
+			}
+			if($type=='parcels'){
+				$sum_org_parcels_carrying_amount=$sum_org_parcels_carrying_amount+$document->doc_carrying_amount;
+			}
+		}
+		$organization_id = $user->organization_id;
+		$organization=Organization::find($organization_id);
+		$organization->org_movables_carrying_amount=$sum_org_movables_carrying_amount;
+		$organization->org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount;
+		$organization->org_cars_carrying_amount = $sum_org_cars_carrying_amount;
+		$organization->org_buildings_carrying_amount=$sum_org_buildings_carrying_amount;
+		$organization->org_parcels_carrying_amount=$sum_org_parcels_carrying_amount;
+		$organization->org_movables_residual_value=$sum_org_movables_residual_value;
+		$organization->org_value_movables_residual_value=$sum_org_value_movables_residual_value;
+		$organization->org_buildings_residual_value=$sum_org_buildings_residual_value;
+		$organization ->org_cars_residual_value = $sum_org_cars_residual_value;
+		$organization->org_carrying_amount=$organization->org_movables_carrying_amount+$organization->org_value_movables_carrying_amount+$organization->org_buildings_carrying_amount+$organization->org_parcels_carrying_amount;
+		$organization->org_residual_value=$organization->org_movables_residual_value+$organization->org_value_movables_residual_value+$organization->org_buildings_residual_value;
+		$organization->save();
+		return Redirect::to('home');
+	}
 	public function  postAdd(){
 		$organization = new Organization;
 		$organization -> full_name = Input::get('full_name');

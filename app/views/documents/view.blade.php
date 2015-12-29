@@ -36,8 +36,8 @@
             <div class="box-body">
                 <div class="control-bnts row">
                     <div class="col-xs-8">
-                            <a href="{{action('ItemsController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a> <a href="{{action('DocumentsController@index', [$document->id])}}" class="add-btn btn btn-success">Сохранить документ</a>
-
+                            <a href="{{action('ItemsController@getAdd', [$document->id])}}" class="add-btn btn btn-primary"><i class="fa fa-plus-square-o"></i> Добавить основное средство</a>
+                        <form method="post" class="inline" action="{{action('DocumentsController@postDocSave', [$document->id])}}"><button type="submit" class="add-btn btn btn-success">Сохранить документ</button></form>
                     </div>
                 </div>
                 <div class="document_sum">

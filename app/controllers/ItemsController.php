@@ -251,7 +251,7 @@ public function postAdd($id){
 			$item -> name=Input::get('name');
 			$item -> os_date=Input::get('os_date');
 			$item -> number=Input::get('number');
-			$item -> os_view=Input::get('os_view');
+			//$item -> os_view=Input::get('os_view');
 			$item -> okof=Input::get('okof');
 			$item->carrying_amount=Input::get('carrying_amount');
 			$item->financing_source=Input::get('financing_source');
