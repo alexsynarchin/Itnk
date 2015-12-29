@@ -7,7 +7,6 @@
 		"laravel/framework": "4.2.*",
 	  	"way/generators": "~2.0",
 		"yajra/laravel-datatables-oracle": "~3.0"
-
 	},
 	"autoload": {
 		"classmap": [
