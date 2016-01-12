@@ -25,7 +25,7 @@ class CreateItemsTable extends Migration {
 				'out_budget'
 			));
 			$table->string('os_view');
-			$table->integer('okof')->length(12);
+			$table->integer('okof');
 			$table->text('additional_field');
 			$table->integer('document_id');
 		});

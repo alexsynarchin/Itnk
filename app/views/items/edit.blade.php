@@ -80,7 +80,7 @@
                         <div class="os-form-group col-xs-6 col-md-6 col-lg-6 ">
                             <label class="control-label">Дата ввода в эксплуатацию</label>
                             <div class="input-container">
-                                <input  type="date" value="{{isset($item->variable->exploitation_date) ? $item->exploitation_date:0 }}" name="exploitation_date" class="form-control">
+                                <input  type="date" value="{{isset($item->variable->exploitation_date)?$item->variable->exploitation_date:0 }}" name="exploitation_date" class="form-control">
                             </div>
                         </div>
                     </div>
