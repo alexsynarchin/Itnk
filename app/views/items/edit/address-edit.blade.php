@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
     <div class="os-form-group col-xs-4">
-        <input required="required" type="text" name="street" value="{{$item->street}}" class="form-control" placeholder="Улица">
+        <input required="required" type="text" name="street" value="{{$item->address->street}}" class="form-control" placeholder="Улица">
     </div>
     <div class="os-form-group col-xs-2">
         <input type="text" name="building_number" value="{{$item->address->building_number}}" class="form-control" placeholder="Дом">
