@@ -42,7 +42,7 @@
                     <td>{{number_format($organization->org_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_movables_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_value_movables_carrying_amount, 2,'.', ' ')}}</td>
-                    <td>{{number_format($organization->cars_carrying_amount, 2,'.', ' ')}}</td>
+                    <td>{{number_format($organization->org_cars_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_buildings_carrying_amount, 2,'.', ' ')}}</td>
                     <td>{{number_format($organization->org_parcels_carrying_amount, 2,'.', ' ')}}</td>
                 </tr>

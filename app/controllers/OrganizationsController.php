@@ -39,12 +39,12 @@ class OrganizationsController extends \BaseController {
 				$sum_org_value_movables_carrying_amount=$sum_org_value_movables_carrying_amount+$document->doc_carrying_amount;
 				$sum_org_value_movables_residual_value=$sum_org_value_movables_residual_value+$document->doc_residual_value;
 			}
-			if ($type == 'cars') {
+			if ($type == 'car') {
 				$sum_org_cars_carrying_amount = $sum_org_cars_carrying_amount + $document->doc_carrying_amount;
-				$sum_org_cars_residual_value=$sum_org_cars_residual_value+$document->doc_residual_value;
+				$sum_org_cars_residual_value = $sum_org_cars_residual_value + $document->doc_residual_value;
 			}
 			if($type=='buildings'){
-				$sum_org_buildings_carrying_amount=$sum_org_buildings_carrying_amount+$document->doc_carrying_amount;
+				$sum_org_buildings_carrying_amount = $sum_org_buildings_carrying_amount+$document->doc_carrying_amount;
 				$sum_org_buildings_residual_value=$sum_org_buildings_residual_value+$document->doc_residual_value;
 			}
 			if($type=='parcels'){
