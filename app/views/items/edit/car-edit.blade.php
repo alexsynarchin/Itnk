@@ -58,7 +58,7 @@
     <div class="os-form-group col-xs-6">
         <label for="name" class="control-label">Тип автомобиля:</label>
         <div class="input-container">
-            {{ Form::select('car_type', Car::$car_type, null, array('class' => 'form-control')) }}
+            {{ Form::select('car_type', Car::$car_type, $item->car->car_type ,array('class' => 'form-control')) }}
         </div>
     </div>
 </div>
