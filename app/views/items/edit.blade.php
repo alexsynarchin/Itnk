@@ -71,7 +71,7 @@
                     <div class="os-form-group col-md-4 col-xs-4">
                         <label for="name" class="control-label">Источник финансирования:</label>
                         <div class="input-container">
-                            {{ Form::select('financing_source', Item::$os_finance, null, array('class' => 'form-control')) }}
+                            {{ Form::select('financing_source', Item::$os_finance, $item->financing_source, array('class' => 'form-control')) }}
                         </div>
                     </div>
                 </div>
