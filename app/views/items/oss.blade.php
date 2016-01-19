@@ -35,8 +35,8 @@
                                     <td>{{{$item->name}}}</td>
                                     <td>{{{$item->number}}}</td>
                                     <td>{{{$item->okof}}}</td>
-                                    <td>{{{$item->carrying_amount}}}</td>
-                                    <td>{{{$item->variable->residual_value}}}</td>
+                                    <td>{{{isset($item->carrying_amount)? $item->carrying_amount: 0}}}</td>
+                                    <td>{{{isset($item->variable->residual_value)? $item->variable->residual_value:0}}}</td>
                                     <td></td>
                                     <td class="actions icons"><a href="{{action('ItemsController@getView',array($item->id))}}"><i class="fa fa-eye"></i></a><a href="{{action('ItemsController@getEdit',array($item->id))}}"><i class="fa fa-pencil-square-o"></i></a></td>
                                 </tr>
@@ -55,6 +55,5 @@
                 </div>
             </div>
         </div>
-
     </section><!-- /.content -->
 @stop
