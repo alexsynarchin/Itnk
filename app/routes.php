@@ -49,6 +49,9 @@ Route::get('test', function()
 
     return item::all();
 });
+Route::get('reports_2015', function(){
+return View::make('reports');
+});
 Route::group(array('before' => 'auth'), function() {
     Route::controller('org','OrganizationsController');
     Route::controller('documents', 'DocumentsController');
