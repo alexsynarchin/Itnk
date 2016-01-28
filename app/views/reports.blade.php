@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.dashboard')
 @section('content')
-    <section class="content-header">
+    <section class="content-header" >
         <h1>
             Отчет  о движении основных средств 2015 год
             <small>Система ИТНК-ОБЗОР</small>
@@ -8,7 +8,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="dlya_pidorka content">
       <p> <b>
               Для доступа к модулю формирования отчетов о движении ОС за 2015г. необходимо завершить ввод данных по остаткам ОС на 1 января 2015г.
               Документы ввод остатков должны быть в статусе "Проведен"
