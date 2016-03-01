@@ -16,8 +16,9 @@
                 <h3 class="box-title">Документ первичного ввода</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            {{ Form::open(array('url' => action('DocumentsController@postAdd'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+
             <div class="box-body">
+                {{ Form::open(array('url' => action('DocumentsController@postAdd'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
                 <div class="form-group">
                     <div class="os-form-group col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">
                         <label for="document_date" class="control-label">Дата документа</label>

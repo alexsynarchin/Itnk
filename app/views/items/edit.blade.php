@@ -20,7 +20,7 @@
                     <a href="{{action('DocumentsController@getView',array($item->document->id))}}" class="btn btn-danger">Закрыть</a>
                 </div><!-- /.box-tools -->
             </div><!-- /.box-header -->
-            {{ Form::model($item, array('url' => action('ItemsController@postUpdate', $item->id), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            {!! Form::model($item, array('url' => action('DocumentController@update', $document->id), 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal')) !!}
             <div class="box-body">
                 <div class="form-group">
                     <div class="os-form-group col-md-12 col-xs-12">

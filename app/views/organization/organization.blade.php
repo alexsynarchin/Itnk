@@ -129,7 +129,7 @@
                          <label>Ф.И.О. Ответственного сотрудника:</label>
                          <div class="input-container">
                              <p class="static">
-                                 {{Auth::user()-> first_name }} {{Auth::user()-> last_name }} {{Auth::user()-> surname }}
+                                 {{Auth::user()-> last_name }}  {{Auth::user()-> first_name }}  {{Auth::user()-> surname }}
                              </p>
                              <hr>
                          </div>

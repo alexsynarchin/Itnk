@@ -37,7 +37,7 @@ public function postAdd($id){
 		$variable -> monthly_rate = Input::get('monthly_rate');
 		$variable -> useful_life = Input::get('useful_life');
 		$item->variable()->save($variable);
-		return Redirect::action('DocumentsController@getView',[$item->document_id]);
+		return Redirect::action('DocumentController@show',[$item->document_id]);
 	}
 	if($type=='car'){
 		$item = new Item;
@@ -154,8 +154,7 @@ public function postAdd($id){
 				$address=Address::find($id)->address();
 				return View::make('items.view', array('item'=>$item,'document'=>$document, 'parcel'=>$parcel, 'address'=>$address));
 			break;
-			default:
-				return View::make('hello');
+
 		}
 	}
 	public function getDelete($id){
@@ -186,6 +185,7 @@ public function postAdd($id){
 				$address=Item::find($id)->address();
 				$address->delete();
 				$parcel->delete();
+				$item->delete();
 				return Redirect::action('DocumentsController@getView', [$item->document->id]);
 			break;
 			case 'movables'||'value_movables':
